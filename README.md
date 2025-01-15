@@ -1,4 +1,4 @@
-## Kratos Learning Repository
+## front-end technology Learning Repository
 
 English | [简体中文](README.zh_CN.md)
 
