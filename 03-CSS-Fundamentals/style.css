@@ -104,6 +104,28 @@ li:nth-child(even) {
   /*color: red;*/
 }
 
-article p:last-child {
+/* 伪选择器误用：这不会起作用。因为p不是index.html的article元素的首个子元素。*/
+article p:first-child {
   color: red;
+}
+
+/* 设置超链接的样式 */
+a:link {
+  color: #1098af;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #1098ad;
+}
+
+a:hover {
+  color: orangered;
+  font-weight: bold;
+  text-decoration: underline orangered;
+}
+
+a:active {
+  background-color: black;
+  font-style: italic;
 }
