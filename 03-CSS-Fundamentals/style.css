@@ -11,6 +11,16 @@ body {
   border-top: 10px solid #1098ad;
 }
 
+.container {
+  width: 800px;
+  /*左右外边距均设置为auto，使浏览器自动计算左右外边距，
+  这样，两侧的外边距会自动相等，
+  使得内容居中*/
+  /*margin-left: auto;*/
+  /*margin-right: auto;*/
+  margin: 0 auto; /*shortcut for above two lines*/
+}
+
 .main-header {
   background-color: #f7f7f7;
   /*padding: 20px;*/
