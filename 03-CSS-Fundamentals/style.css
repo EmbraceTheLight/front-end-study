@@ -5,10 +5,12 @@
   padding: 0;
 }
 
+/*page section*/
 body {
   color: #444444;
   font-family: sans-serif;
   border-top: 10px solid #1098ad;
+  position: relative;
 }
 
 .container {
@@ -19,6 +21,7 @@ body {
   /*margin-left: auto;*/
   /*margin-right: auto;*/
   margin: 0 auto; /*shortcut for above two lines*/
+  /*position: relative;*/
 }
 
 .main-header {
@@ -41,6 +44,7 @@ article {
 
 .post-header {
   margin-bottom: 40px;
+  /*position: relative;*/
 }
 
 aside {
@@ -51,6 +55,7 @@ aside {
   width: 500px;
 }
 
+/*smaller elements*/
 h1,
 h2,
 h3 {
@@ -96,6 +101,7 @@ ol {
 li {
   font-size: 20px;
   margin-bottom: 10px;
+  /*display: inline;*/
 }
 li:last-child {
   margin-bottom: 0; /*去掉最后一项的下侧外边距*/
@@ -204,4 +210,30 @@ a:active {
 .post-img {
   width: 100%;
   height: auto;
+}
+
+nav a:link {
+  /*background-color: orangered;*/
+  /*  margin: 20px;*/
+  /*padding: 20px;*/
+  /*  display: block;*/
+  margin-right: 30px;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+nav a:link:last-child {
+  margin-right: 0;
+}
+
+button {
+  font-size: 22px;
+  padding: 20px;
+  cursor: pointer;
+
+  position: absolute;
+  /*top: 50px;*/
+  /*left: 50px;*/
+  bottom: 50px;
+  right: 50px;
 }
