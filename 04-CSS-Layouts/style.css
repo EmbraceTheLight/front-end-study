@@ -14,7 +14,7 @@ body {
 }
 
 .container {
-  width: 800px;
+  width: 1300px;
   /*左右外边距均设置为auto，使浏览器自动计算左右外边距，
   这样，两侧的外边距会自动相等，
   使得内容居中*/
@@ -25,13 +25,14 @@ body {
 }
 
 .main-header {
-  background-color: #f7f7f7;
+  /*background-color: #f7f7f7;*/
+  background-color: orange;
   /*padding: 20px;*/
   /*padding-left: 40px;*/
   /*padding-right: 40px;*/
   padding: 20px;
   margin-bottom: 60px;
-  height: 80px;
+  /*height: 80px;*/
 }
 
 nav {
@@ -264,4 +265,25 @@ h2::after {
   position: absolute;
   top: -15px;
   right: -50px;
+}
+
+/* about author */
+.author {
+  float: left;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+/* author images */
+.author-img {
+  float: left;
+  margin-bottom: 20px;
+}
+
+h1 {
+  float: left;
+}
+
+nav {
+  float: right;
 }
