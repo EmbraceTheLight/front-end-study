@@ -3,6 +3,7 @@
   /*border-top: 10px solid #1098ad;*/
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 /*page section*/
@@ -14,7 +15,7 @@ body {
 }
 
 .container {
-  width: 1300px;
+  width: 1200px;
   /*左右外边距均设置为auto，使浏览器自动计算左右外边距，
   这样，两侧的外边距会自动相等，
   使得内容居中*/
@@ -25,8 +26,7 @@ body {
 }
 
 .main-header {
-  /*background-color: #f7f7f7;*/
-  background-color: orange;
+  background-color: #f7f7f7;
   /*padding: 20px;*/
   /*padding-left: 40px;*/
   /*padding-right: 40px;*/
@@ -52,8 +52,7 @@ aside {
   background-color: #f7f7f7;
   border-top: 5px solid #1098ad;
   border-bottom: 5px solid #1098ad;
-  padding: 50px 0;
-  width: 500px;
+  padding: 50px 40px;
 }
 
 /*smaller elements*/
@@ -84,6 +83,7 @@ h4 {
   font-size: 20px;
   text-transform: uppercase;
   text-align: center;
+  margin-bottom: 40px;
 }
 
 p {
@@ -138,6 +138,7 @@ article header p {
 
 .related-list {
   list-style: none;
+  margin-left: 0;
 }
 
 body {
@@ -286,4 +287,25 @@ h1 {
 
 nav {
   float: right;
+}
+
+/*消除浮动带来的高度塌陷*/
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+article {
+  width: 825px;
+  float: left;
+}
+
+aside {
+  width: 300px;
+  float: right;
+}
+
+footer {
+  clear: both;
 }
