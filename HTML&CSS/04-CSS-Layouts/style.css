@@ -105,6 +105,7 @@ li {
   /*display: inline;*/
 }
 li:last-child {
+  font-style: italic;
   margin-bottom: 0; /*去掉最后一项的下侧外边距*/
 }
 
@@ -151,10 +152,6 @@ body {
 
 li:first-child {
   font-weight: bold;
-}
-
-li:last-child {
-  font-style: italic;
 }
 
 li:nth-child(even) {
@@ -220,7 +217,6 @@ nav a:link {
   /*padding: 20px;*/
   /*  display: block;*/
   margin-right: 30px;
-  margin-top: 10px;
   display: inline-block;
 }
 
@@ -268,44 +264,107 @@ h2::after {
   right: -50px;
 }
 
+/* FLOAT LAYOUT */
 /* about author */
+/*.author {*/
+/*  float: left;*/
+/*  margin-top: 10px;*/
+/*  margin-left: 20px;*/
+/*}*/
+
+/*!* author images *!*/
+/*.author-img {*/
+/*  float: left;*/
+/*  margin-bottom: 20px;*/
+/*}*/
+
+/*h1 {*/
+/*  float: left;*/
+/*}*/
+
+/*nav {*/
+/*  float: right;*/
+/*}*/
+
+/*!*消除浮动带来的高度塌陷*!*/
+/*.clearfix::after {*/
+/*  content: "";*/
+/*  clear: both;*/
+/*  display: block;*/
+/*}*/
+
+/*article {*/
+/*  width: 825px;*/
+/*  float: left;*/
+/*}*/
+
+/*aside {*/
+/*  width: 300px;*/
+/*  float: right;*/
+/*}*/
+
+/*footer {*/
+/*  clear: both;*/
+/*}*/
+
+/* FLEXBOX LAYOUT */
+.main-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.author-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
 .author {
-  float: left;
-  margin-top: 10px;
-  margin-left: 20px;
+  margin-bottom: 0;
+  margin-left: 15px;
 }
 
-/* author images */
-.author-img {
-  float: left;
-  margin-bottom: 20px;
+.related-post {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px;
 }
 
-h1 {
-  float: left;
-}
-
-nav {
-  float: right;
-}
-
-/*消除浮动带来的高度塌陷*/
-.clearfix::after {
-  content: "";
-  clear: both;
+.related-link:link {
+  font-size: 17px;
+  font-weight: bold;
+  font-style: normal;
   display: block;
+  margin-bottom: 5px;
+}
+
+.related-author {
+  font-weight: normal;
+  font-style: italic;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.row {
+  gap: 75px;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 60px;
 }
 
 article {
-  width: 825px;
-  float: left;
+  flex: 1;
+  margin-bottom: 0;
 }
 
 aside {
-  width: 300px;
-  float: right;
-}
-
-footer {
-  clear: both;
+  /*
+    DEFAULT:
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    */
+  flex: 0 0 300px;
 }
