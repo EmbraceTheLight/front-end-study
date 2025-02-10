@@ -31,6 +31,7 @@ Paragraph default: 1.6
 - Shades: #cf711f
 - Accents:
 - Greys:
+#6f6f6f (针对#fdf2e9的满足高对比度的最浅的灰色)
 #555
 #333
 
@@ -53,8 +54,8 @@ Medium: 11px
 html {
   /* 10px / 16px = 0.625 */
   /* 用户浏览器字体大小 */
-  font-size: 10px;
-  /*font-size: 62.5%;*/
+  /*font-size: 10px;*/
+  font-size: 62.5%;
 }
 
 * {
@@ -96,7 +97,7 @@ body {
 }
 
 .grid--4-cols {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .grid--center-v {
@@ -192,6 +193,26 @@ body {
 .link:active {
   color: #cf711f;
   border-bottom: 1px solid transparent;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.list-item {
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.list-icon {
+  width: 3rem;
+  height: 3rem;
+  color: #e67e22;
 }
 
 .margin-right-small {
