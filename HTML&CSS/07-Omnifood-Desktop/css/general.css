@@ -30,12 +30,16 @@ Paragraph default: 1.6
   #fae5d3
   #eb984e
 
-- Shades: #cf711f
+- Shades:
+  #cf711f
+  #45260a
+
 - Accents:
 - Greys:
 #6f6f6f (针对#fdf2e9的满足高对比度的最浅的灰色)
 #555
 #333
+#aaa
 
 
 --- 05 SHADOWS ---
@@ -147,6 +151,7 @@ body {
   letter-spacing: 0.75px;
 }
 
+.btn,
 .btn:link,
 .btn:visited {
   display: inline-block;
@@ -155,6 +160,10 @@ body {
   font-weight: 600;
   padding: 1.6rem 3.2rem;
   border-radius: 9px;
+
+  /* 以下为btn类型样式设置 */
+  border: none;
+  cursor: pointer;
 
   /*将转换放在原始状态上  */
   /*transition: background-color 0.3s;*/
@@ -183,6 +192,18 @@ body {
   background-color: #fdf2e9;
   /*border: 3px solid #fff;*/
   box-shadow: inset 0 0 0 3px #fff;
+}
+
+.btn--form {
+  background-color: #45260a;
+  color: #fdf2e9;
+  align-self: end;
+  padding: 1.2rem;
+}
+
+.btn--form:hover {
+  background-color: #fff;
+  color: #555;
 }
 
 /* 辅助类 */
@@ -220,6 +241,13 @@ body {
   width: 3rem;
   height: 3rem;
   color: #e67e22;
+}
+
+*:focus {
+  outline: none;
+  /*outline: 4px dotted #e67e22;*/
+  /*outline-offset: 8px;*/
+  box-shadow: 0 0 0 00.8rem rgba(230, 126, 34, 0.5);
 }
 
 .margin-right-small {
