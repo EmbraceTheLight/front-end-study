@@ -1,6 +1,7 @@
 /*
 
 --- 01 TYPOGRAPHY SYSTEM ---
+
 - FONT SIZE (px):
 10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
 
@@ -27,6 +28,7 @@ Paragraph default: 1.6
 - Tints:
   #fdf2e9
   #fae5d3
+  #eb984e
 
 - Shades: #cf711f
 - Accents:
@@ -37,6 +39,8 @@ Paragraph default: 1.6
 
 
 --- 05 SHADOWS ---
+
+box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
 
 
 --- 06 BORDER-RADIUS ---
