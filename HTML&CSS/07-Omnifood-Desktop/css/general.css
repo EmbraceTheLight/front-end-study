@@ -36,10 +36,12 @@ Paragraph default: 1.6
 
 - Accents:
 - Greys:
-#6f6f6f (针对#fdf2e9的满足高对比度的最浅的灰色)
-#555
-#333
-#aaa
+  #888
+  #767676 (针对#fff的满足高对比度的最浅的灰色)
+  #6f6f6f (针对#fdf2e9的满足高对比度的最浅的灰色)
+  #555
+  #333
+  #aaa
 
 
 --- 05 SHADOWS ---
@@ -109,6 +111,10 @@ body {
 
 .grid--4-cols {
   grid-template-columns: repeat(4, 1fr);
+}
+
+.grid--5-cols {
+  grid-template-columns: repeat(5, 1fr);
 }
 
 .grid--center-v {
