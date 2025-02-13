@@ -118,6 +118,67 @@
   .btn--form {
     margin-top: 1.2rem;
   }
+
+  /* mobile navigation */
+  .btn-mobile-nav {
+    display: block;
+  }
+
+  .main-nav {
+    background-color: rgba(255, 255, 255, 0.9);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    transform: translateX(100%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease-in;
+    /* Hide navigation  */
+    /* 若使用了display: none，则后面不允许使用transition */
+    /*display: none;*/
+
+    /* 代替 display: none 的方法 */
+    /*  1. 视觉上隐藏导航栏 */
+    opacity: 0;
+
+    /* 2. 设置不允许鼠标和键盘访问隐藏的导航栏元素 */
+    pointer-events: none;
+
+    /* 3. 从screen reader中隐藏导航栏元素 */
+    visibility: hidden;
+  }
+
+  /* nav-open 类启用导航栏 */
+  .nav-open .main-nav {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+
+    /* 与上面的 transform: translateX(100%) 配合制作动画效果 */
+    transform: translateX(0);
+  }
+
+  .nav-open .icon-mobile-nav[name="close-outline"] {
+    display: block;
+  }
+
+  .nav-open .icon-mobile-nav[name="menu-outline"] {
+    display: none;
+  }
+
+  .main-nav-list {
+    flex-direction: column;
+    gap: 4.8rem;
+  }
+
+  .main-nav-link:link,
+  .main-nav-link:visited {
+    font-size: 3rem;
+  }
 }
 
 /* - FONT SIZE (px) : 10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98 - Spacing system (px) 2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128 */
