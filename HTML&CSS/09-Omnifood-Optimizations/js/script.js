@@ -54,6 +54,30 @@ allLinks.forEach(function (link) {
 });
 
 ///////////////////////////////////////////////////////////
+// 粘性导航栏
+const sectionHeroEl = document.querySelector(".section-hero");
+const obs = new IntersectionObserver(
+  function (entries) {
+    const ent = entries[0];
+    console.log(ent);
+    if (ent.isIntersecting === false) {
+      document.body.classList.add("sticky");
+    }
+
+    if (ent.isIntersecting === true) {
+      document.body.classList.remove("sticky");
+    }
+  },
+  {
+    // 在视口中可见的元素被观察
+    root: null,
+    threshold: 0,
+    rootMargin: "-80px",
+  },
+);
+obs.observe(sectionHeroEl);
+
+///////////////////////////////////////////////////////////
 // Fixing flexbox gap property missing in some Safari versions
 function checkFlexGap() {
   var flex = document.createElement("div");
