@@ -99,11 +99,18 @@
             </div>
           </div>
           <div class="hero-image-box">
-            <img
-              src="img/hero.png"
-              class="hero-img"
-              alt="Woman enjoying food,meals in storage container, and food bowls on a table."
-            />
+            <picture>
+              <!-- 浏览器会自动选择最合适的图片格式，然后加载图片。到下面的img中-->
+              <source srcset="img/hero.webp" type="image/webp" />
+              <source srcset="img/hero-min.png" type="image/png" />
+
+              <img
+                src="img/hero-min.png"
+                class="hero-img"
+                alt="Woman enjoying food,meals in storage container,
+               and food bowls on a table."
+              />
+            </picture>
           </div>
         </div>
       </section>
