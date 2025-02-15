@@ -68,6 +68,10 @@ html {
   /*font-size: 10px;*/
   font-size: 62.5%;
   overflow-x: hidden;
+
+  /* 该属性用于用户点击页面锚时页面平滑滚动，
+  现在它应该已经支持所有主流浏览器 */
+  /*scroll-behavior: smooth;*/
 }
 
 * {
