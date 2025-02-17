@@ -207,7 +207,6 @@ if (BMIMark > BMIJohn) {
 } else {
   console.log(`John\'s BMI (${BMIJohn}) is higher than Mark\'s (${BMIMark})!`);
 }
-*/
 
 // type conversion
 const inputYear = "1991";
@@ -228,3 +227,27 @@ console.log("23" / "2");
 let n = "1" + 1; //11
 n = n - 1; //10
 console.log(n);
+*/
+
+// ---------------------- Truthy and Falsy values ---------------------- //
+// 5个假值： null, undefined, 0, NaN, ""
+
+console.log(Boolean(0));
+console.log(Boolean(undefined));
+console.log(Boolean("Jonas"));
+console.log(Boolean({}));
+console.log(Boolean(""));
+
+const money = 100;
+if (money) {
+  console.log("Don't spend it all :)");
+} else {
+  console.log("You should get a job!");
+}
+
+let height = 0;
+if (height) {
+  console.log("YeY! height is defined!");
+} else {
+  console.log("height is UNDEFINED!");
+}
