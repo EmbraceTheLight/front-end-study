@@ -89,7 +89,6 @@ console.log(ageSarah >= 18);
 const isFullAge = ageSarah >= 18;
 
 console.log(now - 1991 > now - 2018);
-*/
 
 const now = 2037;
 const ageZhang = now - 2003;
@@ -104,3 +103,58 @@ console.log(x, y);
 const averageAge = (ageZhang + ageSarah) / 2;
 console.log(ageZhang, ageSarah);
 console.log(averageAge);
+
+// ----------------------CODE CHALLENGE---------------------- //
+let markHigherBMI;
+// test 1
+let massMark = 78;
+let heightMark = 1.69;
+
+let heightJohn = 1.95;
+let massJohn = 92;
+let BMIMark, BMIJohn;
+
+BMIMark = massMark / (heightMark * heightMark);
+BMIJohn = massJohn / heightJohn ** 2;
+console.log(BMIMark, BMIJohn);
+
+markHigherBMI = BMIMark > BMIJohn;
+console.log(markHigherBMI);
+
+// test 2
+massMark = 95;
+heightMark = 1.88;
+massJohn = 85;
+heightJohn = 1.76;
+
+BMIMark = massMark / (heightMark * heightMark);
+BMIJohn = massJohn / heightJohn ** 2;
+console.log(BMIMark, BMIJohn);
+
+markHigherBMI = BMIMark > BMIJohn;
+console.log(markHigherBMI);
+*/
+// ----------------------Strings and template literals---------------------- //
+const firstName = "John";
+const job = "teacher";
+const birthYear = 1991;
+const year = 2037;
+
+const john =
+  "I'm " + firstName + ", a " + (year - birthYear) + " years old " + job + "!";
+console.log(john);
+
+const johnNew = `I'm ${firstName}, a ${year - birthYear} years old ${job}!`;
+console.log(johnNew);
+
+console.log(`Just a regular string...`);
+
+console.log(
+  "String with \n\
+multiple \n\
+lines",
+);
+
+console.log(`String
+multiple
+lines`);
