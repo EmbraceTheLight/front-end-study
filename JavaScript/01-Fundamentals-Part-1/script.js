@@ -1,5 +1,5 @@
 /*
-// ----------------------Variables---------------------- //
+// ---------------------- Variables ---------------------- //
 let js = "amazing";
 
 // console.log(40 + 8 + 23 - 10);
@@ -23,7 +23,7 @@ let age;
 
 console.log(myFirstJob);
 
-// ----------------------Data Types---------------------- //
+// ---------------------- Data Types ---------------------- //
 let javascriptIsFun = true;
 console.log(javascriptIsFun);
 
@@ -44,7 +44,7 @@ console.log(typeof year);
 
 console.log(typeof null);
 
-// ----------------------const let And var---------------------- //
+// ---------------------- const let And var ---------------------- //
 let age = 30;
 age = 31;
 
@@ -58,7 +58,7 @@ job = "teacher";
 lastName = "Zhang";
 console.log(lastName);
 
-// ----------------------Operators---------------------- //
+// ---------------------- Operators ---------------------- //
 //Math operators
 const now = 2037;
 const ageZhang = now - 2003;
@@ -104,7 +104,7 @@ const averageAge = (ageZhang + ageSarah) / 2;
 console.log(ageZhang, ageSarah);
 console.log(averageAge);
 
-// ----------------------CODE CHALLENGE---------------------- //
+// ---------------------- CODE CHALLENGE ---------------------- //
 let markHigherBMI;
 // test 1
 let massMark = 78;
@@ -133,8 +133,7 @@ console.log(BMIMark, BMIJohn);
 
 markHigherBMI = BMIMark > BMIJohn;
 console.log(markHigherBMI);
-*/
-// ----------------------Strings and template literals---------------------- //
+// ---------------------- Strings and template literals ---------------------- //
 const firstName = "John";
 const job = "teacher";
 const birthYear = 1991;
@@ -158,3 +157,22 @@ lines",
 console.log(`String
 multiple
 lines`);
+*/
+// ---------------------- IF / ELSE Statements ---------------------- //
+const age = 15;
+if (age >= 18) {
+  console.log("Sarah can start driving license. 🚗 ");
+} else {
+  const yearsLeft = 18 - age;
+  console.log(`Sarah is too young. Wait another ${yearsLeft} years :)`);
+}
+
+const birthYear = 1991;
+
+let century;
+if (birthYear <= 2000) {
+  century = 20;
+} else {
+  century = 21;
+}
+console.log(century);
