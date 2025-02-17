@@ -104,7 +104,7 @@ const averageAge = (ageZhang + ageSarah) / 2;
 console.log(ageZhang, ageSarah);
 console.log(averageAge);
 
-// ---------------------- CODE CHALLENGE ---------------------- //
+// ---------------------- CODE CHALLENGE 1 ---------------------- //
 let markHigherBMI;
 // test 1
 let massMark = 78;
@@ -133,6 +133,7 @@ console.log(BMIMark, BMIJohn);
 
 markHigherBMI = BMIMark > BMIJohn;
 console.log(markHigherBMI);
+
 // ---------------------- Strings and template literals ---------------------- //
 const firstName = "John";
 const job = "teacher";
@@ -157,7 +158,7 @@ lines",
 console.log(`String
 multiple
 lines`);
-*/
+
 // ---------------------- IF / ELSE Statements ---------------------- //
 const age = 15;
 if (age >= 18) {
@@ -176,3 +177,54 @@ if (birthYear <= 2000) {
   century = 21;
 }
 console.log(century);
+
+// ---------------------- CODE CHALLENGE 2 ---------------------- //
+//test data 1
+// const massMark = 78;
+// const heightMark = 1.69;
+//
+// const heightJohn = 1.95;
+// const massJohn = 92;
+
+//test data 2
+const massMark = 95;
+const heightMark = 1.88;
+
+const massJohn = 85;
+const heightJohn = 1.76;
+const BMIMark = massMark / (heightMark * heightMark);
+const BMIJohn = massJohn / heightJohn ** 2;
+console.log(BMIMark, BMIJohn);
+
+if (BMIMark > BMIJohn) {
+  console.log("Mark\'s BMI is higher than John\'s!");
+} else {
+  console.log("John\'s BMI is higher than Mark\'s!");
+}
+
+if (BMIMark > BMIJohn) {
+  console.log(`Mark's BMI (${BMIMark}) is higher than John's (${BMIJohn})!`);
+} else {
+  console.log(`John\'s BMI (${BMIJohn}) is higher than Mark\'s (${BMIMark})!`);
+}
+*/
+
+// type conversion
+const inputYear = "1991";
+console.log(Number(inputYear), inputYear);
+console.log(Number(inputYear) + 18);
+
+console.log(Number("Jonas"));
+console.log(typeof NaN);
+
+console.log(String(23));
+
+// type coercion
+console.log("I am " + 23 + " years old");
+console.log("23" - "10" - 3);
+console.log("23" * "2");
+console.log("23" / "2");
+
+let n = "1" + 1; //11
+n = n - 1; //10
+console.log(n);
