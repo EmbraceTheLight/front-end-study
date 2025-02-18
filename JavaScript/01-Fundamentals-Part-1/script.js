@@ -270,7 +270,7 @@ if (favorite === 23) {
 }
 
 if (favorite !== 23) console.log("Wht not 23?");
-*/
+
 // ---------------------- Boolean logic ---------------------- //
 const hasDriversLicense = true; //A
 const hasGoodVision = true; //B
@@ -292,4 +292,92 @@ if (hasDriversLicense && hasGoodVision && !isTired) {
   console.log("Sarah is able to drive!");
 } else {
   console.log("Someone else should drive...");
+}
+*/
+
+// ---------------------- CODE CHALLENGE 3 ---------------------- //
+// test
+const dolphinsScore1 = 96;
+const dolphinsScore2 = 108;
+const dolphinsScore3 = 89;
+
+const koalaScore1 = 88;
+const koalaScore2 = 91;
+const koalaScore3 = 110;
+
+const averageDolphinScore =
+  (dolphinsScore1 + dolphinsScore2 + dolphinsScore3) / 3;
+const averageKoalaScore = (koalaScore1 + koalaScore2 + koalaScore3) / 3;
+console.log(averageDolphinScore, averageKoalaScore);
+
+if (averageDolphinScore > averageKoalaScore) {
+  console.log("Dolphins win the game!");
+} else if (averageKoalaScore === averageDolphinScore) {
+  console.log("Draw game!");
+} else {
+  console.log("Koalas win the game!");
+}
+
+// bonus 1
+const dolphinsScoreB11 = 97; // B1 means bonus 1
+const dolphinsScoreB12 = 112;
+const dolphinsScoreB13 = 101;
+
+const koalaScoreB11 = 109;
+const koalaScoreB12 = 95;
+const koalaScoreB13 = 123;
+
+const averageDolphinScoreB1 =
+  (dolphinsScoreB11 + dolphinsScoreB12 + dolphinsScoreB13) / 3;
+const averageKoalaScoreB1 = (koalaScoreB11 + koalaScoreB12 + koalaScoreB13) / 3;
+console.log(averageDolphinScoreB1, averageKoalaScoreB1);
+
+if (
+  averageDolphinScoreB1 > averageKoalaScoreB1 &&
+  averageDolphinScoreB1 >= 100
+) {
+  console.log("Dolphins win the game!");
+} else if (averageKoalaScoreB1 === averageDolphinScoreB1) {
+  console.log("Draw game!");
+} else if (
+  averageDolphinScoreB1 < averageKoalaScoreB1 &&
+  averageKoalaScoreB1 >= 100
+) {
+  console.log("Koalas win the game!");
+} else {
+  console.log("no one wins the game!");
+}
+
+// bonus 2
+const dolphinsScoreB21 = 97; // B1 means bonus 1
+const dolphinsScoreB22 = 112;
+const dolphinsScoreB23 = 80;
+
+const koalaScoreB21 = 109;
+const koalaScoreB22 = 95;
+const koalaScoreB23 = 50;
+
+const averageDolphinScoreB2 =
+  (dolphinsScoreB21 + dolphinsScoreB22 + dolphinsScoreB23) / 3;
+const averageKoalaScoreB2 = (koalaScoreB21 + koalaScoreB22 + koalaScoreB23) / 3;
+console.log(averageDolphinScoreB2, averageKoalaScoreB2);
+
+if (
+  averageDolphinScoreB2 > averageKoalaScoreB2 &&
+  averageDolphinScoreB2 >= 100
+) {
+  console.log("Dolphins win the game!");
+} else if (
+  averageKoalaScoreB2 === averageDolphinScoreB2 &&
+  averageKoalaScoreB2 >= 100 &&
+  averageDolphinScoreB2 >= 100
+) {
+  console.log("Draw game!");
+} else if (
+  averageDolphinScoreB2 < averageKoalaScoreB2 &&
+  averageKoalaScoreB2 >= 100
+) {
+  console.log("Koalas win the game!");
+} else {
+  console.log("no one wins the game!");
 }
