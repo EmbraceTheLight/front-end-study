@@ -435,9 +435,8 @@ if (23 > 10) {
 
 const me = "Ey";
 console.log(`I'm ${2037 - 1991} years old ${me}`);
-*/
 
-// ---------------------- Conditional Operator (Ternary Operator)---------------------- //
+// ---------------------- Conditional Operator (Ternary Operator) ---------------------- //
 const age = 23;
 
 age >= 18
@@ -456,3 +455,11 @@ if (age >= 18) {
 console.log(drink2);
 
 console.log(`I like to drink ${age >= 18 ? "wine 🍷" : "water 💧"}`);
+*/
+
+// ---------------------- CHALLENGE 4 ---------------------- //
+const bill = Number(prompt("What is the total bill?"));
+const tip = bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+console.log(
+  `The bill was ${bill}, the tip was ${tip}, and the total value was ${bill + tip}`,
+);
