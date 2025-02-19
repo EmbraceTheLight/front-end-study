@@ -380,8 +380,8 @@ if (
 } else {
   console.log("no one wins the game!");
 }
-*/
 
+// ---------------------- Switch Statements ---------------------- //
 const day = "monday";
 
 switch (day) {
@@ -421,3 +421,18 @@ if (day === "monday") {
 } else {
   console.log("Not a valid day");
 }
+*/
+
+// ---------------------- Expressions and Statements ---------------------- //
+// Expressions:
+3 + 4;
+1991;
+true && false && !false;
+
+// Statements:
+if (23 > 10) {
+  const str = "23 is bigger";
+}
+
+const me = "Ey";
+console.log(`I'm ${2037 - 1991} years old ${me}`);
