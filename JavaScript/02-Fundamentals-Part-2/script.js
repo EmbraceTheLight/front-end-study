@@ -31,7 +31,7 @@
 // console.log(appleOrangeJuice);
 //
 // const num = Number("23");
-
+//
 //Function declaration
 // function calcAge1(birthYear) {
 //   return 2037 - birthYear;
@@ -45,7 +45,7 @@
 // const age2 = calcAge2(1991);
 //
 // console.log(age1, age2);
-
+//
 //Function expression
 // const calcAge2 = function (birthYear) {
 //   return 2037 - birthYear;
@@ -65,7 +65,7 @@
 //
 // console.log(yearsUntilRetirement(1991, "Ey"));
 // console.log(yearsUntilRetirement(1980, "Bob"));
-
+//
 // functions call other function
 // function cutFruitPieces(fruit) {
 //   return fruit * 4;
@@ -80,7 +80,7 @@
 // }
 //
 // console.log(fruitProcessor(2, 3));
-
+//
 // const calcAge = function (birthYear) {
 //   return 2037 - birthYear;
 // };
@@ -171,7 +171,7 @@
 //   calcAge(years[years.length - 1]),
 // ];
 // console.log(ages);
-
+//
 // const friends = ["Michael", "Steven", "Peter"];
 //
 // // Add element to array
@@ -254,38 +254,73 @@
 // console.log(
 //   `${ey.firstName} has ${ey.friends.length} friends, and his best friend is called ${ey.friends[0]}`,
 // );
+//
+// const ey = {
+//   firstName: "Ey",
+//   lastName: "Zh",
+//   birthYear: 2003,
+//   job: "student",
+//   friends: ["Michael", "Steven", "Peter"],
+//   hasDriversLicense: true,
+//
+//   // calcAge: function (birthYear) {
+//   //   return 2037 - birthYear;
+//   // },
+//
+//   // calcAge: function () {
+//   //   // console.log(this);
+//   //   return 2037 - this.birthYear;
+//   // },
+//
+//   calcAge: function () {
+//     this.age = 2037 - this.birthYear;
+//     return this.age;
+//   },
+//   // Challenge
+//   getSummary: function () {
+//     return `${this.firstName} is a ${this.calcAge()}-year old ${this.job}, and he has ${this.hasDriversLicense ? "a" : "no"} driver's license.`;
+//   },
+// };
+//
+// console.log(ey.calcAge());
+//
+// console.log(ey.age);
+// console.log(ey.age);
+// console.log(ey.age);
+//
+// console.log(ey.getSummary());
 
-const ey = {
-  firstName: "Ey",
-  lastName: "Zh",
-  birthYear: 2003,
-  job: "student",
-  friends: ["Michael", "Steven", "Peter"],
-  hasDriversLicense: true,
-
-  // calcAge: function (birthYear) {
-  //   return 2037 - birthYear;
-  // },
-
-  // calcAge: function () {
-  //   // console.log(this);
-  //   return 2037 - this.birthYear;
-  // },
-
-  calcAge: function () {
-    this.age = 2037 - this.birthYear;
-    return this.age;
-  },
-  // Challenge
-  getSummary: function () {
-    return `${this.firstName} is a ${this.calcAge()}-year old ${this.job}, and he has ${this.hasDriversLicense ? "a" : "no"} driver's license.`;
+// ------------------------------- CHALLENGE 3 ------------------------------- //
+const mark = {
+  firstName: "Mark",
+  lastName: "Miller",
+  height: 1.69,
+  weight: 78,
+  calcBMI: function () {
+    this.bmi = this.weight / this.height ** 2;
+    return this.bmi;
   },
 };
 
-console.log(ey.calcAge());
+const john = {
+  firstName: "John",
+  lastName: "Smith",
+  height: 1.95,
+  weight: 92,
+  calcBMI: function () {
+    this.bmi = this.weight / this.height ** 2;
+    return this.bmi;
+  },
+};
 
-console.log(ey.age);
-console.log(ey.age);
-console.log(ey.age);
-
-console.log(ey.getSummary());
+if (mark.calcBMI() > john.calcBMI()) {
+  console.log(
+    `${mark.firstName} ${mark.lastName}'s BMI (${mark.bmi}) is higher than ${john.firstName} ${john.lastName}'s BMI (${john.bmi})`,
+  );
+} else if (mark.calcBMI() < john.calcBMI()) {
+  console.log(
+    `${john.firstName} ${john.lastName}'s BMI (${john.bmi}) is higher than ${mark.firstName} ${mark.lastName}'s BMI (${john.bmi})`,
+  );
+} else {
+  console.log("Draw! ");
+}
