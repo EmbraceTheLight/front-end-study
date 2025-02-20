@@ -205,14 +205,87 @@
 // }
 
 // ------------------------------- CHALLENGE 2 ------------------------------- //
-const bills = [125, 555, 44];
-const calcTip = function (bill) {
-  return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+// const bills = [125, 555, 44];
+// const calcTip = function (bill) {
+//   return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+// };
+// const add = (num1, num2) => num1 + num2;
+// const total = [
+//   add(bills[0], calcTip(bills[0])),
+//   add(bills[1], calcTip(bills[1])),
+//   add(bills[2], calcTip(bills[2])),
+// ];
+// console.log(total);
+
+// ------------------------------- Objects ------------------------------- //
+// const ey = {
+//   firstName: "Ey",
+//   lastName: "Zh",
+//   age: 2037 - 2003,
+//   job: "student",
+//   friends: ["Michael", "Steven", "Peter"],
+// };
+// console.log(ey);
+//
+// console.log(ey.lastName);
+// console.log(ey["lastName"]);
+//
+// const nameKey = "Name";
+// console.log(ey["first" + nameKey]);
+// console.log(ey["last" + nameKey]);
+//
+// const interestedIn = prompt(
+//   "What do you want to know about Ey? Choose between age, job, friends,firstName and lastName",
+// );
+//
+// if (ey[interestedIn]) {
+//   console.log(ey[interestedIn]);
+// } else {
+//   console.log(
+//     "Wrong request! Choose between age, job, friends,firstName and lastName",
+//   );
+// }
+//
+// ey.location = "China";
+// ey["twitter"] = "@lorem";
+// console.log(ey);
+//
+// // Challenge
+// console.log(
+//   `${ey.firstName} has ${ey.friends.length} friends, and his best friend is called ${ey.friends[0]}`,
+// );
+
+const ey = {
+  firstName: "Ey",
+  lastName: "Zh",
+  birthYear: 2003,
+  job: "student",
+  friends: ["Michael", "Steven", "Peter"],
+  hasDriversLicense: true,
+
+  // calcAge: function (birthYear) {
+  //   return 2037 - birthYear;
+  // },
+
+  // calcAge: function () {
+  //   // console.log(this);
+  //   return 2037 - this.birthYear;
+  // },
+
+  calcAge: function () {
+    this.age = 2037 - this.birthYear;
+    return this.age;
+  },
+  // Challenge
+  getSummary: function () {
+    return `${this.firstName} is a ${this.calcAge()}-year old ${this.job}, and he has ${this.hasDriversLicense ? "a" : "no"} driver's license.`;
+  },
 };
-const add = (num1, num2) => num1 + num2;
-const total = [
-  add(bills[0], calcTip(bills[0])),
-  add(bills[1], calcTip(bills[1])),
-  add(bills[2], calcTip(bills[2])),
-];
-console.log(total);
+
+console.log(ey.calcAge());
+
+console.log(ey.age);
+console.log(ey.age);
+console.log(ey.age);
+
+console.log(ey.getSummary());
