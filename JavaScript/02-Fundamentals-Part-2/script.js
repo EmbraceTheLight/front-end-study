@@ -380,8 +380,90 @@ GOOD LUCK 😀
 // console.log("Lifting weights repetition 8 🏋️");
 // console.log("Lifting weights repetition 9 🏋️");
 // console.log("Lifting weights repetition 10 🏋️");
-
+//
 // for loop keeps running while the condition is TRUE
-for (let rep = 1; rep <= 10; rep++) {
-  console.log(`Lifting weights repetition ${rep} 🏋️`);
+// for (let rep = 1; rep <= 10; rep++) {
+//   console.log(`Lifting weights repetition ${rep} 🏋️`);
+// }
+//
+// const eyArray = [
+//   "Ey",
+//   "Zh",
+//   2037 - 2003,
+//   "student",
+//   ["Michael", "Steven", "Peter"],
+//   true,
+// ];
+// const types = [];
+// for (let i = 0; i < eyArray.length; i++) {
+//   console.log(eyArray[i], typeof eyArray[i]);
+//
+//   // 填充新数组都放法之一
+//   // types[i] = typeof eyArray[i];
+//   types.push(typeof eyArray[i]);
+// }
+// console.log(types);
+//
+// const years = [1991, 2007, 1969, 2020];
+// const ages = [];
+// for (let i = 0; i < years.length; i++) {
+//   ages.push(2037 - years[i]);
+// }
+// console.log(ages);
+//
+// //continue and break
+// console.log("--- ONLY STRINGS ---");
+// for (let i = 0; i < eyArray.length; i++) {
+//   if (typeof eyArray[i] !== "string") {
+//     continue;
+//   }
+//   console.log(eyArray[i], typeof eyArray[i]);
+// }
+//
+// console.log("--- BREAK WITH THE FIRST NUMBER ---");
+// for (let i = 0; i < eyArray.length; i++) {
+//   if (typeof eyArray[i] === "number") {
+//     break;
+//   }
+//   console.log(eyArray[i], typeof eyArray[i]);
+// }
+//
+// const eyArray = [
+//   "Ey",
+//   "Zh",
+//   2037 - 2003,
+//   "student",
+//   ["Michael", "Steven", "Peter"],
+//   true,
+// ];
+// for (let i = eyArray.length - 1; i >= 0; i--) {
+//   console.log(eyArray[i]);
+// }
+//
+// for (let exercise = 1; exercise <= 3; exercise++) {
+//   console.log(`------ Starting exercise ${exercise}`);
+//
+//   for (let rep = 1; rep < 6; rep++) {
+//     console.log(`Exercise ${exercise}: Lifting weight repetition ${rep} 🏋️ `);
+//   }
+// }
+// for (let rep = 1; rep <= 10; rep++) {
+//   console.log(`Lifting weights repetition ${rep} 🏋️`);
+// }
+//
+let rep = 1;
+while (rep <= 10) {
+  console.log(`WHILE: Lifting weights repetition ${rep} 🏋️`);
+  rep++;
+}
+
+let dice = Math.trunc(Math.random() * 6);
+console.log(dice);
+
+while (dice !== 6) {
+  console.log(`You rolled a ${dice}`);
+  dice = Math.trunc(Math.random() * 6) + 1;
+  if (dice === 6) {
+    console.log(`Loop is about end...`);
+  }
 }
