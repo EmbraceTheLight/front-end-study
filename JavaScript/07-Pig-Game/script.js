@@ -22,29 +22,64 @@ diceEl.classList.add("hidden");
 const scores = [0, 0];
 let currentScore = 0;
 let activePlayer = 0;
+let playing = true;
+
+// 切换到下一个玩家
+const switchPlayer = function () {
+  document.getElementById(`current--${activePlayer}`).textContent = "0";
+  activePlayer = activePlayer === 0 ? 1 : 0;
+  currentScore = 0;
+  player0El.classList.toggle("player--active");
+  player1El.classList.toggle("player--active");
+};
 
 // 掷骰子
 btnRoll.addEventListener("click", function () {
-  // 1. 随机掷骰子
-  const dice = Math.trunc(Math.random() * 6) + 1;
+  if (playing) {
+    // 1. 随机掷骰子
+    const dice = Math.trunc(Math.random() * 6) + 1;
 
-  // 2. 显示骰子
-  diceEl.classList.remove("hidden");
-  diceEl.src = `dice-${dice}.png`;
+    // 2. 显示骰子
+    diceEl.classList.remove("hidden");
+    diceEl.src = `dice-${dice}.png`;
 
-  // 3. 检查骰子点数是否为1
-  if (dice !== 1) {
-    // 将点数添加到当前得分
-    currentScore += dice;
+    // 3. 检查骰子点数是否为1
+    if (dice !== 1) {
+      // 将点数添加到当前得分
+      currentScore += dice;
 
-    document.getElementById(`current--${activePlayer}`).textContent =
-      currentScore;
-  } else {
-    // 切换到下一个玩家
-    document.getElementById(`current--${activePlayer}`).textContent = "0";
-    activePlayer = activePlayer === 0 ? 1 : 0;
-    currentScore = 0;
-    player0El.classList.toggle("player--active");
-    player1El.classList.toggle("player--active");
+      document.getElementById(`current--${activePlayer}`).textContent =
+        currentScore;
+    } else {
+      switchPlayer();
+    }
+  }
+});
+
+btnHold.addEventListener("click", function () {
+  if (playing) {
+    // 1. 为当前玩家添加得分到总分
+    scores[activePlayer] += currentScore;
+    document.getElementById(`score--${activePlayer}`).textContent = String(
+      scores[activePlayer],
+    );
+
+    // 2. 检查当前玩家的总得分是否 >=100
+    // 如果是，则游戏结束，显示胜利者
+    if (scores[activePlayer] >= 20) {
+      playing = false;
+      diceEl.classList.add("hidden");
+
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.add("player--winner");
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.remove("player--active");
+
+      // 如果不是，则切换到下一个玩家
+    } else {
+      switchPlayer();
+    }
   }
 });
