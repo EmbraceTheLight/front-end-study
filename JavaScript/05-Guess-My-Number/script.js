@@ -14,45 +14,54 @@
 // 随机数
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
 
-// 初始分数
+// 初始数字以及最高分
 let score = 20;
+let highScore = 0;
+let isGameOver = false;
+
+const displayMessage = function (message) {
+  document.querySelector(".message").textContent = message;
+};
 
 document.querySelector(".check").addEventListener("click", function () {
-  const guess = Number(document.querySelector(".guess").value);
-  console.log(typeof guess);
+  if (!isGameOver) {
+    const guess = Number(document.querySelector(".guess").value);
+    console.log(typeof guess);
 
-  // 输入为空
-  if (!guess) {
-    document.querySelector(".message").textContent = "🚫 No number!";
+    // 输入为空
+    if (!guess) {
+      // document.querySelector(".message").textContent = "🚫 No number!";
+      displayMessage("🚫 No number!");
 
-    // 玩家猜对数字，胜利
-  } else if (guess === secretNumber) {
-    document.querySelector(".message").textContent = "🎇 Correct Number!";
-    document.querySelector(".number").textContent = String(secretNumber);
+      // 玩家猜对数字，胜利
+    } else if (guess === secretNumber) {
+      // document.querySelector(".message").textContent = "🎇 Correct Number!";
+      displayMessage("🎇 Correct Number!");
+      document.querySelector(".number").textContent = String(secretNumber);
 
-    document.querySelector("body").style.backgroundColor = "#60b347";
-    document.querySelector(".number").style.width = "30rem";
+      document.querySelector("body").style.backgroundColor = "#60b347";
+      document.querySelector(".number").style.width = "30rem";
+      isGameOver = true;
 
-    // 玩家输入数值大于目标值
-  } else if (guess > secretNumber) {
-    if (score > 1) {
-      document.querySelector(".message").textContent = "📈 Too high";
-      score--;
-      document.querySelector(".score").textContent = String(score);
-    } else {
-      document.querySelector(".message").textContent = "💥 You lost the game!";
-      document.querySelector(".score").textContent = String(0);
-    }
+      if (score > highScore) {
+        highScore = score;
+        document.querySelector(".highscore").textContent = String(highScore);
+      }
 
-    // 玩家输入数值小于目标值
-  } else if (guess < secretNumber) {
-    if (score > 1) {
-      document.querySelector(".message").textContent = "📉 Too low";
-      score--;
-      document.querySelector(".score").textContent = String(score);
-    } else {
-      document.querySelector(".message").textContent = "💥 You lost the game!";
-      document.querySelector(".score").textContent = String(0);
+      // 玩家输入数值不等于目标值
+    } else if (guess !== secretNumber) {
+      if (score > 1) {
+        // document.querySelector(".message").textContent =
+        //   guess > secretNumber ? "📈 Too high" : "📉 Too low";
+        displayMessage(guess > secretNumber ? "📈 Too high" : "📉 Too low");
+        score--;
+        document.querySelector(".score").textContent = String(score);
+      } else {
+        // document.querySelector(".message").textContent =
+        //   "💥 You lost the game!";
+        displayMessage("💥 You lost the game!");
+        document.querySelector(".score").textContent = String(0);
+      }
     }
   }
 });
@@ -73,8 +82,8 @@ document.querySelector(".again").addEventListener("click", function () {
   score = 20;
   document.querySelector(".score").textContent = String(score);
   document.querySelector(".guess").value = "";
-  document.querySelector(".message").textContent = "Start guessing...";
-
+  // document.querySelector(".message").textContent = "Start guessing...";
+  displayMessage("Start guessing...");
   document.querySelector("body").style.backgroundColor = "#222";
   const number = document.querySelector(".number");
   number.style.width = "15rem";
