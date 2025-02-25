@@ -38,45 +38,79 @@
 // calcAge(2003);
 
 // ---------------------------- TDZ ---------------------------- //
-// Variables
-console.log(me);
-// console.log(job);
-// console.log(year);
+// // Variables
+// console.log(me);
+// // console.log(job);
+// // console.log(year);
+//
+// var me = "Ey";
+// let job = "student";
+// const year = 2003;
+//
+// // Functions
+// console.log(addDecl(2, 3));
+// // console.log(addExpr(2, 3));
+// console.log(addArrow);
+// // console.log(addArrow(2, 3));
+//
+// function addDecl(a, b) {
+//   return a + b;
+// }
+//
+// const addExpr = function (a, b) {
+//   return a + b;
+// };
+//
+// var addArrow = (a, b) => a + b;
+//
+// // Example
+// console.log(numProducts);
+// if (!numProducts) deleteShoppingCart();
+//
+// var numProducts = 10;
+//
+// function deleteShoppingCart() {
+//   console.log("All products deleted");
+// }
+//
+// var x = 1;
+// let y = 2;
+// const z = 3;
+//
+// console.log(x === window.x); // true
+// console.log(y === window.y); // false
+// console.log(z === window.z); // false
 
-var me = "Ey";
-let job = "student";
-const year = 2003;
+// ---------------------------- this keyword ---------------------------- //
+// console.log(this); // <window> object
 
-// Functions
-console.log(addDecl(2, 3));
-// console.log(addExpr(2, 3));
-console.log(addArrow);
-// console.log(addArrow(2, 3));
-
-function addDecl(a, b) {
-  return a + b;
-}
-
-const addExpr = function (a, b) {
-  return a + b;
+const calcAge = function (birthYear) {
+  console.log(2037 - birthYear);
+  // console.log(this);
 };
+calcAge(2003); // undefined
 
-var addArrow = (a, b) => a + b;
+const calcAgeArrow = (birthYear) => {
+  console.log(2037 - birthYear);
+  // console.log(this);
+};
+calcAgeArrow(2003); // <window> object
 
-// Example
-console.log(numProducts);
-if (!numProducts) deleteShoppingCart();
+const Ey = {
+  year: 2003,
+  calcAge: function () {
+    console.log(this); // <Ey> object
+    console.log(2037 - this.year);
+  },
+};
+Ey.calcAge(); // <Ey> object
 
-var numProducts = 10;
+const matilda = {
+  year: 2017,
+};
+matilda.calcAge = Ey.calcAge;
+matilda.calcAge();
 
-function deleteShoppingCart() {
-  console.log("All products deleted");
-}
-
-var x = 1;
-let y = 2;
-const z = 3;
-
-console.log(x === window.x); // true
-console.log(y === window.y); // false
-console.log(z === window.z); // false
+const f = Ey.calcAge;
+f();
+console.log(f);
