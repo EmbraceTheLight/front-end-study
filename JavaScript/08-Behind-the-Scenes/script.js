@@ -114,49 +114,104 @@
 // const f = Ey.calcAge;
 // f();
 // console.log(f);
+//
+// var firstName = "Matilda";
+//
+// const Ey = {
+//   firstName: "Ey",
+//   year: 2003,
+//   calcAge: function () {
+//     // console.log(this); // <Ey> object
+//     console.log(2037 - this.year);
+//
+//     // Solution 1
+//     // const self = this;
+//     // const isMillennial = function () {
+//     //   console.log(self);
+//     //   console.log(self.year >= 1981 && self.year <= 2005);
+//     // };
+//
+//     // Solution 2
+//     const isMillennial = () => {
+//       console.log(this);
+//       console.log(this.year >= 1981 && this.year <= 2005);
+//     };
+//     isMillennial();
+//   },
+//
+//   greet: () => {
+//     console.log(this); // <window> object
+//     console.log(`Hey ${this.firstName}`); // Hey undefined
+//   },
+// };
+// Ey.greet(); // Hey undefined
+// Ey.calcAge();
+//
+// // arguments keyword
+// const addExpr = function (a, b) {
+//   console.log(arguments);
+//   return a + b;
+// };
+// addExpr(2, 5);
+// addExpr(2, 5, 8, 12);
+//
+// const addArrow = (a, b) => {
+//   console.log(arguments);
+//   return a + b;
+// };
+// addArrow(2, 5, 8);
 
-var firstName = "Matilda";
+// ---------------------------- Primitive Types and Reference Types ---------------------------- //
+// let age = 30;
+// let oldAge = age;
+// age = 31;
+// console.log(age);
+// console.log(oldAge);
+//
+// const me = {
+//   name: "Ey",
+//   age: 20,
+// };
+// const friend = me;
+// friend.age = 27;
+// console.log("Friend:", friend);
+// console.log("Me:", me);
 
-const Ey = {
-  firstName: "Ey",
-  year: 2003,
-  calcAge: function () {
-    // console.log(this); // <Ey> object
-    console.log(2037 - this.year);
+// Primitive Types
+let lastName = "Williams";
+let oldLastName = lastName;
+lastName = "Davis";
+console.log(lastName);
+console.log(oldLastName);
 
-    // Solution 1
-    // const self = this;
-    // const isMillennial = function () {
-    //   console.log(self);
-    //   console.log(self.year >= 1981 && self.year <= 2005);
-    // };
-
-    // Solution 2
-    const isMillennial = () => {
-      console.log(this);
-      console.log(this.year >= 1981 && this.year <= 2005);
-    };
-    isMillennial();
-  },
-
-  greet: () => {
-    console.log(this); // <window> object
-    console.log(`Hey ${this.firstName}`); // Hey undefined
-  },
+const jessica = {
+  firstName: "Jessica",
+  lastName: "Williams",
+  age: 27,
 };
-Ey.greet(); // Hey undefined
-Ey.calcAge();
 
-// arguments keyword
-const addExpr = function (a, b) {
-  console.log(arguments);
-  return a + b;
-};
-addExpr(2, 5);
-addExpr(2, 5, 8, 12);
+// Reference Types
+const marriedJessica = jessica;
+marriedJessica.lastName = "Davis";
+console.log("Before marriage:", jessica);
+console.log("After marriage:", marriedJessica);
 
-const addArrow = (a, b) => {
-  console.log(arguments);
-  return a + b;
+// marriedJessica = {};
+
+// Coping Objects
+const jessica2 = {
+  firstName: "Jessica",
+  lastName: "Williams",
+  age: 27,
+  family: ["Alice", "Bob"],
 };
-addArrow(2, 5, 8);
+
+const jessicaCopy = Object.assign({}, jessica2);
+jessicaCopy.lastName = "Davis";
+console.log("Before marriage:", jessica2);
+console.log("After marriage:", jessicaCopy);
+
+jessicaCopy.family.push("Mary");
+jessicaCopy.family.push("John");
+console.log("Before marriage:", jessica2);
+console.log("After marriage:", jessicaCopy);
