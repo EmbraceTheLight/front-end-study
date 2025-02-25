@@ -1,37 +1,82 @@
 /* jshint -W097 */
 "use strict";
 
-function calcAge(birthYear) {
-  const age = 2037 - birthYear;
+// ---------------------------- Scoping ---------------------------- //
+// function calcAge(birthYear) {
+//   const age = 2037 - birthYear;
+//
+//   function printAge() {
+//     let output = `${firstName}, You are ${age}, born in ${birthYear}`;
+//     console.log(output);
+//
+//     if (birthYear >= 1981 && birthYear <= 2005) {
+//       var millennial = true;
+//
+//       //创建一个新的与外部作用域名称相同的变量 firstName
+//       const firstName = "Steven";
+//
+//       // 重新分配外部作用域的 output 变量
+//       output = `NEW OUTPUT`;
+//
+//       const str = `Oh, and you are a millennial, ${firstName}!`;
+//       console.log(str);
+//
+//       function add(a, b) {
+//         return a + b;
+//       }
+//     }
+//     // console.log(str);
+//     console.log(millennial);
+//     // console.log(add(2, 3));
+//     console.log(output);
+//   }
+//   printAge();
+//   return age;
+// }
+//
+// const firstName = "Ey";
+// calcAge(2003);
 
-  function printAge() {
-    let output = `${firstName}, You are ${age}, born in ${birthYear}`;
-    console.log(output);
+// ---------------------------- TDZ ---------------------------- //
+// Variables
+console.log(me);
+// console.log(job);
+// console.log(year);
 
-    if (birthYear >= 1981 && birthYear <= 2005) {
-      var millennial = true;
+var me = "Ey";
+let job = "student";
+const year = 2003;
 
-      //创建一个新的与外部作用域名称相同的变量 firstName
-      const firstName = "Steven";
+// Functions
+console.log(addDecl(2, 3));
+// console.log(addExpr(2, 3));
+console.log(addArrow);
+// console.log(addArrow(2, 3));
 
-      // 重新分配外部作用域的 output 变量
-      output = `NEW OUTPUT`;
-
-      const str = `Oh, and you are a millennial, ${firstName}!`;
-      console.log(str);
-
-      function add(a, b) {
-        return a + b;
-      }
-    }
-    // console.log(str);
-    console.log(millennial);
-    // console.log(add(2, 3));
-    console.log(output);
-  }
-  printAge();
-  return age;
+function addDecl(a, b) {
+  return a + b;
 }
 
-const firstName = "Ey";
-calcAge(2003);
+const addExpr = function (a, b) {
+  return a + b;
+};
+
+var addArrow = (a, b) => a + b;
+
+// Example
+console.log(numProducts);
+if (!numProducts) deleteShoppingCart();
+
+var numProducts = 10;
+
+function deleteShoppingCart() {
+  console.log("All products deleted");
+}
+
+var x = 1;
+let y = 2;
+const z = 3;
+
+console.log(x === window.x); // true
+console.log(y === window.y); // false
+console.log(z === window.z); // false
