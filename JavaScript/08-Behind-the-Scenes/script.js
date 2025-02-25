@@ -83,34 +83,80 @@
 
 // ---------------------------- this keyword ---------------------------- //
 // console.log(this); // <window> object
+//
+// const calcAge = function (birthYear) {
+//   console.log(2037 - birthYear);
+//   // console.log(this);
+// };
+// calcAge(2003); // undefined
+//
+// const calcAgeArrow = (birthYear) => {
+//   console.log(2037 - birthYear);
+//   // console.log(this);
+// };
+// calcAgeArrow(2003); // <window> object
+//
+// const Ey = {
+//   year: 2003,
+//   calcAge: function () {
+//     console.log(this); // <Ey> object
+//     console.log(2037 - this.year);
+//   },
+// };
+// Ey.calcAge(); // <Ey> object
+//
+// const matilda = {
+//   year: 2017,
+// };
+// matilda.calcAge = Ey.calcAge;
+// matilda.calcAge();
+//
+// const f = Ey.calcAge;
+// f();
+// console.log(f);
 
-const calcAge = function (birthYear) {
-  console.log(2037 - birthYear);
-  // console.log(this);
-};
-calcAge(2003); // undefined
-
-const calcAgeArrow = (birthYear) => {
-  console.log(2037 - birthYear);
-  // console.log(this);
-};
-calcAgeArrow(2003); // <window> object
+var firstName = "Matilda";
 
 const Ey = {
+  firstName: "Ey",
   year: 2003,
   calcAge: function () {
-    console.log(this); // <Ey> object
+    // console.log(this); // <Ey> object
     console.log(2037 - this.year);
+
+    // Solution 1
+    // const self = this;
+    // const isMillennial = function () {
+    //   console.log(self);
+    //   console.log(self.year >= 1981 && self.year <= 2005);
+    // };
+
+    // Solution 2
+    const isMillennial = () => {
+      console.log(this);
+      console.log(this.year >= 1981 && this.year <= 2005);
+    };
+    isMillennial();
+  },
+
+  greet: () => {
+    console.log(this); // <window> object
+    console.log(`Hey ${this.firstName}`); // Hey undefined
   },
 };
-Ey.calcAge(); // <Ey> object
+Ey.greet(); // Hey undefined
+Ey.calcAge();
 
-const matilda = {
-  year: 2017,
+// arguments keyword
+const addExpr = function (a, b) {
+  console.log(arguments);
+  return a + b;
 };
-matilda.calcAge = Ey.calcAge;
-matilda.calcAge();
+addExpr(2, 5);
+addExpr(2, 5, 8, 12);
 
-const f = Ey.calcAge;
-f();
-console.log(f);
+const addArrow = (a, b) => {
+  console.log(arguments);
+  return a + b;
+};
+addArrow(2, 5, 8);
