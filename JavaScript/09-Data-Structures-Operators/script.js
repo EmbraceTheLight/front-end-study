@@ -67,57 +67,103 @@ const restaurant = {
       `Here is your delicious pasta with ${ing1}, ${ing2}, and ${ing3}`,
     );
   },
+
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
 };
-// ------------------------------------ Spread Operator ------------------------------------ //
-const arr = [7, 8, 9];
-const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
-console.log(badNewArr); // [1, 2, 7, 8, 9]
 
-const newArr = [1, 2, ...arr];
-console.log(newArr); // [1, 2, 7, 8, 9]
+// ------------------------------------ Rest Pattern and Rest Parameters ------------------------------------ //
+// 1) Rest 用于解构
+// 扩展运算符，因为 ... 在 赋值运算符= 右侧
+const arr = [1, 2, ...[3, 4]];
 
-console.log(...newArr); // 1 2 7 8 9
-console.log(1, 2, 7, 8, 9);
+// 剩余（Rest）参数，它存在于 赋值运算符= 左侧
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(a, b, others);
 
-const newMenu = [...restaurant.mainMenu, "Gnocci"];
-console.log(newMenu);
-
-// 复制数组 -- 浅拷贝
-const mainMenuCopy = [...restaurant.mainMenu];
-
-// 连接数组
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-console.log(menu);
-
-// 可迭代对象包括字符串、数组、Map、Set等，但不包含对象
-const str = "Ey Zh";
-const letters = [...str, "", "S."];
-console.log(letters);
-console.log(...str);
-
-// 真实世界样例
-const ingredients = [
-  // prompt("Let's make pasta! Ingredient 1?"),
-  // prompt("Ingredient 2?"),
-  // prompt("Ingredient 3?"),
+const [pizza, , risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
 ];
-console.log(ingredients);
+console.log(pizza, risotto, otherFood);
 
-restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
-restaurant.orderPasta(...ingredients);
+// 在对象中应用 Rest 语法
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(weekdays);
 
-// 对象
-const newRestaurant = {
-  foundedIn: 1998,
-  ...restaurant,
-  founder: "Ey Zh",
+// 2) Rest 用于函数
+const add = function (...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+  }
+  console.log(sum);
+  return sum;
 };
-console.log(newRestaurant);
+add(2, 3);
+add(5, 3, 7, 2);
+add(5, 3, 9, 8, 7, 6, 5, 4, 3, 2, 1);
 
-const restaurantCopy = { ...restaurant };
-restaurantCopy.name = "Ristorante Roma";
-console.log(restaurantCopy.name);
-console.log(restaurant.name);
+const x = [23, 5, 7];
+add(...x);
+
+restaurant.orderPizza("mushrooms", "onions", "olives", "spinach");
+restaurant.orderPizza("mushrooms");
+
+// ------------------------------------ Spread Operator ------------------------------------ //
+// const arr = [7, 8, 9];
+// const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+// console.log(badNewArr); // [1, 2, 7, 8, 9]
+//
+// const newArr = [1, 2, ...arr];
+// console.log(newArr); // [1, 2, 7, 8, 9]
+//
+// //  在函数中使用扩展运算符
+// console.log(...newArr); // 1 2 7 8 9
+// console.log(1, 2, 7, 8, 9);
+//
+// const newMenu = [...restaurant.mainMenu, "Gnocci"];
+// console.log(newMenu);
+//
+// // 复制数组 -- 浅拷贝
+// const mainMenuCopy = [...restaurant.mainMenu];
+//
+// // 连接数组
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// console.log(menu);
+//
+// // 可迭代对象包括字符串、数组、Map、Set等，但不包含对象
+// const str = "Ey Zh";
+// const letters = [...str, "", "S."];
+// console.log(letters);
+// console.log(...str);
+//
+// // 真实世界样例
+// const ingredients = [
+//   // prompt("Let's make pasta! Ingredient 1?"),
+//   // prompt("Ingredient 2?"),
+//   // prompt("Ingredient 3?"),
+// ];
+// console.log(ingredients);
+//
+// restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
+// restaurant.orderPasta(...ingredients);
+//
+// // 对象
+// const newRestaurant = {
+//   foundedIn: 1998,
+//   ...restaurant,
+//   founder: "Ey Zh",
+// };
+// console.log(newRestaurant);
+//
+// const restaurantCopy = { ...restaurant };
+// restaurantCopy.name = "Ristorante Roma";
+// console.log(restaurantCopy.name);
+// console.log(restaurant.name);
+
 // ------------------------------------ Array Destructuring ------------------------------------ //
 // const arr = [2, 3, 4];
 // const a = arr[0];
