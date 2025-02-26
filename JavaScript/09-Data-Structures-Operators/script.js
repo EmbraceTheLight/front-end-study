@@ -74,84 +74,15 @@ const restaurant = {
   },
 };
 
-console.log("---- OR ----");
-console.log(3 || "Ey"); // 3
-console.log("" || "Ey"); // "Ey"
-console.log(true || 0); // true
-console.log(undefined || null); // null
-
-console.log(undefined || 0 || "" || "Hello" || 23 || null); // "Hello"
-
+// ------------------------------------ Nullish Coalescing Operator ------------------------------------ //
 restaurant.numGuests = 0;
-const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
-console.log(guests1);
 
-const guests2 = restaurant.numGuests || 10;
-console.log(guests2);
+const guests = restaurant.numGuests || 10;
+console.log(guests);
 
-console.log("---- AND ----");
-console.log(0 && "Ey"); // 0
-console.log(7 && "Ey"); // "Ey"
-console.log("Hello" && 23 && null && "Ey"); //null
-
-// AND 运算符对比示例
-if (restaurant.orderPizza) {
-  restaurant.orderPizza("mushrooms", "spinach");
-}
-
-restaurant.orderPizza && restaurant.orderPizza("mushrooms", "spinach");
-
-// ------------------------------------ Spread Operator ------------------------------------ //
-// const arr = [7, 8, 9];
-// const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
-// console.log(badNewArr); // [1, 2, 7, 8, 9]
-//
-// const newArr = [1, 2, ...arr];
-// console.log(newArr); // [1, 2, 7, 8, 9]
-//
-// //  在函数中使用扩展运算符
-// console.log(...newArr); // 1 2 7 8 9
-// console.log(1, 2, 7, 8, 9);
-//
-// const newMenu = [...restaurant.mainMenu, "Gnocci"];
-// console.log(newMenu);
-//
-// // 复制数组 -- 浅拷贝
-// const mainMenuCopy = [...restaurant.mainMenu];
-//
-// // 连接数组
-// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-// console.log(menu);
-//
-// // 可迭代对象包括字符串、数组、Map、Set等，但不包含对象
-// const str = "Ey Zh";
-// const letters = [...str, "", "S."];
-// console.log(letters);
-// console.log(...str);
-//
-// // 真实世界样例
-// const ingredients = [
-//   // prompt("Let's make pasta! Ingredient 1?"),
-//   // prompt("Ingredient 2?"),
-//   // prompt("Ingredient 3?"),
-// ];
-// console.log(ingredients);
-//
-// restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
-// restaurant.orderPasta(...ingredients);
-//
-// // 对象
-// const newRestaurant = {
-//   foundedIn: 1998,
-//   ...restaurant,
-//   founder: "Ey Zh",
-// };
-// console.log(newRestaurant);
-//
-// const restaurantCopy = { ...restaurant };
-// restaurantCopy.name = "Ristorante Roma";
-// console.log(restaurantCopy.name);
-// console.log(restaurant.name);
+// Nullish: null and undefined (NOT include 0 or '')
+const guestCorrect = restaurant.numGuests ?? 10;
+console.log(guestCorrect);
 
 // ------------------------------------ Array Destructuring ------------------------------------ //
 // const arr = [2, 3, 4];
@@ -225,6 +156,58 @@ restaurant.orderPizza && restaurant.orderPizza("mushrooms", "spinach");
 // } = openingHours;
 // console.log(o, c);
 
+// ------------------------------------ Spread Operator ------------------------------------ //
+// const arr = [7, 8, 9];
+// const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+// console.log(badNewArr); // [1, 2, 7, 8, 9]
+//
+// const newArr = [1, 2, ...arr];
+// console.log(newArr); // [1, 2, 7, 8, 9]
+//
+// //  在函数中使用扩展运算符
+// console.log(...newArr); // 1 2 7 8 9
+// console.log(1, 2, 7, 8, 9);
+//
+// const newMenu = [...restaurant.mainMenu, "Gnocci"];
+// console.log(newMenu);
+//
+// // 复制数组 -- 浅拷贝
+// const mainMenuCopy = [...restaurant.mainMenu];
+//
+// // 连接数组
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// console.log(menu);
+//
+// // 可迭代对象包括字符串、数组、Map、Set等，但不包含对象
+// const str = "Ey Zh";
+// const letters = [...str, "", "S."];
+// console.log(letters);
+// console.log(...str);
+//
+// // 真实世界样例
+// const ingredients = [
+//   // prompt("Let's make pasta! Ingredient 1?"),
+//   // prompt("Ingredient 2?"),
+//   // prompt("Ingredient 3?"),
+// ];
+// console.log(ingredients);
+//
+// restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
+// restaurant.orderPasta(...ingredients);
+//
+// // 对象
+// const newRestaurant = {
+//   foundedIn: 1998,
+//   ...restaurant,
+//   founder: "Ey Zh",
+// };
+// console.log(newRestaurant);
+//
+// const restaurantCopy = { ...restaurant };
+// restaurantCopy.name = "Ristorante Roma";
+// console.log(restaurantCopy.name);
+// console.log(restaurant.name);
+
 // ------------------------------------ Rest Pattern and Rest Parameters ------------------------------------ //
 // // 1) Rest 用于解构
 // // 扩展运算符，因为 ... 在 赋值运算符= 右侧
@@ -262,3 +245,31 @@ restaurant.orderPizza && restaurant.orderPizza("mushrooms", "spinach");
 //
 // restaurant.orderPizza("mushrooms", "onions", "olives", "spinach");
 // restaurant.orderPizza("mushrooms");
+
+// ------------------------------------ Short Circuit Evaluation ------------------------------------ //
+// console.log("---- OR ----");
+// console.log(3 || "Ey"); // 3
+// console.log("" || "Ey"); // "Ey"
+// console.log(true || 0); // true
+// console.log(undefined || null); // null
+//
+// console.log(undefined || 0 || "" || "Hello" || 23 || null); // "Hello"
+//
+// restaurant.numGuests = 0;
+// const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+// console.log(guests1);
+//
+// const guests2 = restaurant.numGuests || 10;
+// console.log(guests2);
+//
+// console.log("---- AND ----");
+// console.log(0 && "Ey"); // 0
+// console.log(7 && "Ey"); // "Ey"
+// console.log("Hello" && 23 && null && "Ey"); //null
+//
+// // AND 运算符对比示例
+// if (restaurant.orderPizza) {
+//   restaurant.orderPizza("mushrooms", "spinach");
+// }
+//
+// restaurant.orderPizza && restaurant.orderPizza("mushrooms", "spinach");
