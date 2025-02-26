@@ -74,43 +74,32 @@ const restaurant = {
   },
 };
 
-// ------------------------------------ Rest Pattern and Rest Parameters ------------------------------------ //
-// 1) Rest 用于解构
-// 扩展运算符，因为 ... 在 赋值运算符= 右侧
-const arr = [1, 2, ...[3, 4]];
+console.log("---- OR ----");
+console.log(3 || "Ey"); // 3
+console.log("" || "Ey"); // "Ey"
+console.log(true || 0); // true
+console.log(undefined || null); // null
 
-// 剩余（Rest）参数，它存在于 赋值运算符= 左侧
-const [a, b, ...others] = [1, 2, 3, 4, 5];
-console.log(a, b, others);
+console.log(undefined || 0 || "" || "Hello" || 23 || null); // "Hello"
 
-const [pizza, , risotto, ...otherFood] = [
-  ...restaurant.mainMenu,
-  ...restaurant.starterMenu,
-];
-console.log(pizza, risotto, otherFood);
+restaurant.numGuests = 0;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
 
-// 在对象中应用 Rest 语法
-const { sat, ...weekdays } = restaurant.openingHours;
-console.log(weekdays);
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
 
-// 2) Rest 用于函数
-const add = function (...numbers) {
-  let sum = 0;
-  for (let i = 0; i < numbers.length; i++) {
-    sum += numbers[i];
-  }
-  console.log(sum);
-  return sum;
-};
-add(2, 3);
-add(5, 3, 7, 2);
-add(5, 3, 9, 8, 7, 6, 5, 4, 3, 2, 1);
+console.log("---- AND ----");
+console.log(0 && "Ey"); // 0
+console.log(7 && "Ey"); // "Ey"
+console.log("Hello" && 23 && null && "Ey"); //null
 
-const x = [23, 5, 7];
-add(...x);
+// AND 运算符对比示例
+if (restaurant.orderPizza) {
+  restaurant.orderPizza("mushrooms", "spinach");
+}
 
-restaurant.orderPizza("mushrooms", "onions", "olives", "spinach");
-restaurant.orderPizza("mushrooms");
+restaurant.orderPizza && restaurant.orderPizza("mushrooms", "spinach");
 
 // ------------------------------------ Spread Operator ------------------------------------ //
 // const arr = [7, 8, 9];
@@ -235,3 +224,41 @@ restaurant.orderPizza("mushrooms");
 //   fri: { open: o, close: c },
 // } = openingHours;
 // console.log(o, c);
+
+// ------------------------------------ Rest Pattern and Rest Parameters ------------------------------------ //
+// // 1) Rest 用于解构
+// // 扩展运算符，因为 ... 在 赋值运算符= 右侧
+// const arr = [1, 2, ...[3, 4]];
+//
+// // 剩余（Rest）参数，它存在于 赋值运算符= 左侧
+// const [a, , b, ...others] = [1, 2, 3, 4, 5];
+// console.log(a, b, others);
+//
+// const [pizza, , risotto, ...otherFood] = [
+//   ...restaurant.mainMenu,
+//   ...restaurant.starterMenu,
+// ];
+// console.log(pizza, risotto, otherFood);
+//
+// // 在对象中应用 Rest 语法
+// const { sat, ...weekdays } = restaurant.openingHours;
+// console.log(weekdays);
+//
+// // 2) Rest 用于函数
+// const add = function (...numbers,a) {
+//   let sum = 0;
+//   for (let i = 0; i < numbers.length; i++) {
+//     sum += numbers[i];
+//   }
+//   console.log(sum);
+//   return sum;
+// };
+// add(2, 3);
+// add(5, 3, 7, 2);
+// add(5, 3, 9, 8, 7, 6, 5, 4, 3, 2, 1);
+//
+// const x = [23, 5, 7];
+// add(...x);
+//
+// restaurant.orderPizza("mushrooms", "onions", "olives", "spinach");
+// restaurant.orderPizza("mushrooms");
