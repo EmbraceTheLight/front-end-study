@@ -74,16 +74,6 @@ const restaurant = {
   },
 };
 
-// ------------------------------------ Nullish Coalescing Operator ------------------------------------ //
-restaurant.numGuests = 0;
-
-const guests = restaurant.numGuests || 10;
-console.log(guests);
-
-// Nullish: null and undefined (NOT include 0 or '')
-const guestCorrect = restaurant.numGuests ?? 10;
-console.log(guestCorrect);
-
 // ------------------------------------ Array Destructuring ------------------------------------ //
 // const arr = [2, 3, 4];
 // const a = arr[0];
@@ -273,3 +263,43 @@ console.log(guestCorrect);
 // }
 //
 // restaurant.orderPizza && restaurant.orderPizza("mushrooms", "spinach");
+
+// ------------------------------------ Nullish Coalescing Operator ------------------------------------ //
+// restaurant.numGuests = 0;
+//
+// const guests = restaurant.numGuests || 10;
+// console.log(guests);
+//
+// // Nullish: null and undefined (NOT include 0 or '')
+// const guestCorrect = restaurant.numGuests ?? 10;
+// console.log(guestCorrect);
+
+// ------------------------------------ Logic Assignment Operators ------------------------------------ //
+// const rest1 = {
+//   name: "Capri",
+//   // numGuests: 20,
+//   numGuests: 0,
+// };
+//
+// const rest2 = {
+//   name: "La piazza",
+//   owner: "Giovanni Rossi",
+// };
+//
+// // OR assignment operator
+// // rest1.numGuests = rest1.numGuests || 10;
+// // rest2.numGuests = rest2.numGuests || 10;
+// // rest1.numGuests ||= 10; // jshint ignore:line
+// // rest2.numGuests ||= 10; // jshint ignore:line
+//
+// // nullish assignment operator
+// rest1.numGuests ??= 10; // jshint ignore:line
+// rest2.numGuests ??= 10; // jshint ignore:line
+//
+// // AND assignment operator
+// // rest1.owner = rest1.owner && "<ANONYMOUS>"; // undefined
+// // rest2.owner = rest2.owner && "<ANONYMOUS>"; // <ANONYMOUS>
+// rest1.owner &&= "<ANONYMOUS>"; // jshint ignore:line
+// rest2.owner &&= "<ANONYMOUS>"; // jshint ignore:line
+// console.log(rest1);
+// console.log(rest2);
