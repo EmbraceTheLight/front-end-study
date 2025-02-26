@@ -50,6 +50,7 @@ const restaurant = {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
 
+  // 在函数参数中解构对象
   orderDelivery: function ({
     starterIndex = 1,
     mainIndex = 0,
@@ -60,42 +61,63 @@ const restaurant = {
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`,
     );
   },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(
+      `Here is your delicious pasta with ${ing1}, ${ing2}, and ${ing3}`,
+    );
+  },
 };
-restaurant.orderDelivery({
-  time: "22:30",
-  address: "somewhere in the city",
-  mainIndex: 2,
-  starterIndex: 2,
-});
+// ------------------------------------ Spread Operator ------------------------------------ //
+const arr = [7, 8, 9];
+const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+console.log(badNewArr); // [1, 2, 7, 8, 9]
 
-restaurant.orderDelivery({ address: "Via del Sole 21", starterIndex: 1 });
-// ------------------------------------ Object Destructuring ------------------------------------ //
-const { name, openingHours, categories } = restaurant;
-console.log(name, openingHours, categories);
+const newArr = [1, 2, ...arr];
+console.log(newArr); // [1, 2, 7, 8, 9]
 
-const {
-  name: restaurantName,
-  openingHours: hours,
-  categories: tags,
-} = restaurant;
-console.log(restaurantName, hours, tags);
+console.log(...newArr); // 1 2 7 8 9
+console.log(1, 2, 7, 8, 9);
 
-// 默认值
-const { menu = [], starterMenu: starters = [] } = restaurant;
-console.log(menu, starters);
+const newMenu = [...restaurant.mainMenu, "Gnocci"];
+console.log(newMenu);
 
-// 变量转换
-let a = 111;
-let b = 999;
-const obj = { a: 23, b: 7, c: 14 };
-({ a, b } = obj);
-console.log(a, b);
+// 复制数组 -- 浅拷贝
+const mainMenuCopy = [...restaurant.mainMenu];
 
-//  嵌套对象解构
-const {
-  fri: { open: o, close: c },
-} = openingHours;
-console.log(o, c);
+// 连接数组
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(menu);
+
+// 可迭代对象包括字符串、数组、Map、Set等，但不包含对象
+const str = "Ey Zh";
+const letters = [...str, "", "S."];
+console.log(letters);
+console.log(...str);
+
+// 真实世界样例
+const ingredients = [
+  // prompt("Let's make pasta! Ingredient 1?"),
+  // prompt("Ingredient 2?"),
+  // prompt("Ingredient 3?"),
+];
+console.log(ingredients);
+
+restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
+restaurant.orderPasta(...ingredients);
+
+// 对象
+const newRestaurant = {
+  foundedIn: 1998,
+  ...restaurant,
+  founder: "Ey Zh",
+};
+console.log(newRestaurant);
+
+const restaurantCopy = { ...restaurant };
+restaurantCopy.name = "Ristorante Roma";
+console.log(restaurantCopy.name);
+console.log(restaurant.name);
 // ------------------------------------ Array Destructuring ------------------------------------ //
 // const arr = [2, 3, 4];
 // const a = arr[0];
@@ -130,3 +152,40 @@ console.log(o, c);
 // // 默认值
 // const [p = 1, q = 1, r = 1] = [8, 9];
 // console.log(p, q, r);
+
+// ------------------------------------ Object Destructuring ------------------------------------ //
+// // 在函数参数中解构对象
+// restaurant.orderDelivery({
+//   time: "22:30",
+//   address: "somewhere in the city",
+//   mainIndex: 2,
+//   starterIndex: 2,
+// });
+// restaurant.orderDelivery({ address: "Via del Sole 21", starterIndex: 1 });
+//
+// const { name, openingHours, categories } = restaurant;
+// console.log(name, openingHours, categories);
+//
+// const {
+//   name: restaurantName,
+//   openingHours: hours,
+//   categories: tags,
+// } = restaurant;
+// console.log(restaurantName, hours, tags);
+//
+// // 默认值
+// const { menu = [], starterMenu: starters = [] } = restaurant;
+// console.log(menu, starters);
+//
+// // 变量转换
+// let a = 111;
+// let b = 999;
+// const obj = { a: 23, b: 7, c: 14 };
+// ({ a, b } = obj);
+// console.log(a, b);
+//
+// //  嵌套对象解构
+// const {
+//   fri: { open: o, close: c },
+// } = openingHours;
+// console.log(o, c);
