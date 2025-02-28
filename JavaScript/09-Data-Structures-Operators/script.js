@@ -87,31 +87,29 @@ const restaurant = {
   },
 };
 
-// ------------------------------------ Optional Chaining ------------------------------------ //
-if (restaurant.openingHours && restaurant.openingHours.mon) {
-  console.log(restaurant.openingHours.mon.open);
+// ------------------------------------ Looping Objects ------------------------------------ //
+// Property Names
+const properties = Object.keys(openingHours);
+console.log(properties);
+
+let openStr = `We are open on ${properties.length} days: `;
+
+for (const day of properties) {
+  openStr += `${day}, `;
 }
+console.log(openStr);
 
-//Optional Chaining
-console.log(restaurant.openingHours.mon?.open);
-console.log(restaurant.openingHours?.mon?.open);
+// Property Values
+const values = Object.values(openingHours);
+console.log(values);
 
-//Example
-const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
-for (const day of days) {
-  const open = restaurant.openingHours[day]?.open ?? "closed";
-  console.log(`On ${day}, we open at ${open}`);
+// Entire Object
+const entries = Object.entries(openingHours);
+console.log(entries);
+
+for (const [key, { open, close }] of entries) {
+  console.log(`On ${key} we open at ${open} and close at ${close}`);
 }
-
-//Method
-console.log(restaurant.order?.(0, 1) ?? "Method does not exist");
-console.log(restaurant.orderRisotto?.(0, 1) ?? "Method does not exist");
-
-//Array
-// const users = [{ name: "ey", email: "hello@world.org" }];
-const users = [];
-
-console.log(users[0]?.name ?? "user array empty");
 
 // ------------------------------------ Array Destructuring ------------------------------------ //
 // const arr = [2, 3, 4];
@@ -343,18 +341,6 @@ console.log(users[0]?.name ?? "user array empty");
 // console.log(rest1);
 // console.log(rest2);
 
-// ------------------------------------ for-of loop ------------------------------------ //
-// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-// for (const item of menu) {
-//   console.log(item);
-// }
-//
-// for (const [i, el] of menu.entries()) {
-//   console.log(`${i + 1}: ${el[1]}`);
-// }
-//
-// // console.log(...menu.entries());
-
 // ------------------------------------ Code Challenge 1 ------------------------------------ //
 /*
 We're building a football betting app (soccer for my American friends 😅)!
@@ -451,3 +437,41 @@ GOOD LUCK 😀
 // const winner = t1win || t2win;
 //
 // console.log(`${winner} is more likely to win.`);
+
+// ------------------------------------ for-of loop ------------------------------------ //
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// for (const item of menu) {
+//   console.log(item);
+// }
+//
+// for (const [i, el] of menu.entries()) {
+//   console.log(`${i + 1}: ${el[1]}`);
+// }
+//
+// // console.log(...menu.entries());
+
+// ------------------------------------ Optional Chaining ------------------------------------ //
+// if (restaurant.openingHours && restaurant.openingHours.mon) {
+//   console.log(restaurant.openingHours.mon.open);
+// }
+//
+// //Optional Chaining
+// console.log(restaurant.openingHours.mon?.open);
+// console.log(restaurant.openingHours?.mon?.open);
+//
+// //Example
+// const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+// for (const day of days) {
+//   const open = restaurant.openingHours[day]?.open ?? "closed";
+//   console.log(`On ${day}, we open at ${open}`);
+// }
+//
+// //Method
+// console.log(restaurant.order?.(0, 1) ?? "Method does not exist");
+// console.log(restaurant.orderRisotto?.(0, 1) ?? "Method does not exist");
+//
+// //Array
+// // const users = [{ name: "ey", email: "hello@world.org" }];
+// const users = [];
+//
+// console.log(users[0]?.name ?? "user array empty");
