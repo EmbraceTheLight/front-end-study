@@ -87,86 +87,52 @@ const restaurant = {
   },
 };
 
-// ------------------------------------ Set ------------------------------------ //
-const orderSet = new Set([
-  "Pasta",
-  "Pizza",
-  "Pizza",
-  "Risotto",
-  "Pasta",
-  "Pizza",
-]);
-console.log(orderSet);
+// ------------------------------------ Map ------------------------------------ //
+// 创建映射
+const rest = new Map();
 
-// 创建集合
-console.log(new Set("ey Zh"));
+// 添加键值对到映射
+rest.set("name", "Classico Italiano");
+rest.set(1, "Firenze, Italy");
+console.log(rest.set(2, "Lisbon, Portugal"));
 
-// 查看集合大小
-console.log(orderSet.size);
+// 设置键值对：链式调用
+rest
+  .set("categories", ["Italian", "Pizzeria", "Vegetarian", "Organic"])
+  .set("open", 11)
+  .set("close", 23)
+  .set(true, "We are open :D")
+  .set(false, "We are closed :(");
 
-// 查看某元素是否在集合中
-console.log(orderSet.has("Pizza"));
-console.log(orderSet.has("Bread"));
+// 通过获取值
+console.log(rest.get("name"));
+console.log(rest.get(true));
+console.log(rest.get(1));
 
-// 添加元素到集合
-orderSet.add("Garlic Bread");
-orderSet.add("Garlic Bread");
-console.log(orderSet);
+const time = 8;
+console.log(rest.get(time > rest.get("open") && time < rest.get("close")));
 
-// 从集合中删除元素
-orderSet.delete("Risotto");
-console.log(orderSet);
+// 判断键是否存在
+console.log(rest.has("categories"));
 
-// 清空集合
-// orderSet.clear();
-// console.log(orderSet);
+// 根据键删除某个键值对
+rest.delete(2);
+console.log(rest);
 
-// 遍历集合
-for (const order of orderSet) {
-  console.log(order);
-}
+// 获取映射的大小
+console.log(rest.size);
 
-// 示例：清除数组中的重复元素
-const staff = ["Waiter", "Chef", "Waiter", "Manager", "Chef", "Waiter"];
-const staffUnique = [...new Set(staff)];
-console.log(staffUnique);
-console.log(new Set(staff).size);
-console.log(new Set("aabcdeeff").size);
-// ------------------------------------ Array Destructuring ------------------------------------ //
-// const arr = [2, 3, 4];
-// const a = arr[0];
-// const b = arr[1];
-// const c = arr[2];
-//
-// const [x, y, z] = arr;
-// console.log(x, y, z);
-//
-// let [main, , secondary] = restaurant.categories;
-// console.log(main, secondary);
-//
-// // const temp = main;
-// // main = secondary;
-// // secondary = temp;
-// // console.log(main, secondary);
-//
-// [main, secondary] = [secondary, main];
-// console.log(main, secondary);
-//
-// // 接收一个函数的两个返回值
-// const [starter, mainCourse] = restaurant.order(2, 0);
-// console.log(starter, mainCourse);
-//
-// // 嵌套解构
-// const nested = [2, 4, [5, 6]];
-// // const [i, , j] = nested;
-// // console.log(i, j);
-// const [i, , [j, k]] = nested;
-// console.log(i, j, k);
-//
-// // 默认值
-// const [p = 1, q = 1, r = 1] = [8, 9];
-// console.log(p, q, r);
+// 清空映射
+// rest.clear();
+// console.log(rest);
+// console.log(rest.size);
 
+const arr = [1, 2];
+rest.set(arr, "Test");
+rest.set(document.querySelector("h1"), "Heading");
+console.log(rest);
+
+console.log(rest.get(arr));
 // ------------------------------------ Object Destructuring ------------------------------------ //
 // // 在函数参数中解构对象
 // restaurant.orderDelivery({
@@ -611,3 +577,83 @@ GOOD LUCK 😀
 //   scorers[scorer] ? scorers[scorer]++ : (scorers[scorer] = 1);
 // }
 // console.log(scorers);
+
+// ------------------------------------ Set ------------------------------------ //
+// const orderSet = new Set([
+//   "Pasta",
+//   "Pizza",
+//   "Pizza",
+//   "Risotto",
+//   "Pasta",
+//   "Pizza",
+// ]);
+// console.log(orderSet);
+//
+// // 创建集合
+// console.log(new Set("ey Zh"));
+//
+// // 查看集合大小
+// console.log(orderSet.size);
+//
+// // 查看某元素是否在集合中
+// console.log(orderSet.has("Pizza"));
+// console.log(orderSet.has("Bread"));
+//
+// // 添加元素到集合
+// orderSet.add("Garlic Bread");
+// orderSet.add("Garlic Bread");
+// console.log(orderSet);
+//
+// // 从集合中删除元素
+// orderSet.delete("Risotto");
+// console.log(orderSet);
+//
+// // 清空集合
+// // orderSet.clear();
+// // console.log(orderSet);
+//
+// // 遍历集合
+// for (const order of orderSet) {
+//   console.log(order);
+// }
+//
+// // 示例：清除数组中的重复元素
+// const staff = ["Waiter", "Chef", "Waiter", "Manager", "Chef", "Waiter"];
+// const staffUnique = [...new Set(staff)];
+// console.log(staffUnique);
+// console.log(new Set(staff).size);
+// console.log(new Set("aabcdeeff").size);
+// ------------------------------------ Array Destructuring ------------------------------------ //
+// const arr = [2, 3, 4];
+// const a = arr[0];
+// const b = arr[1];
+// const c = arr[2];
+//
+// const [x, y, z] = arr;
+// console.log(x, y, z);
+//
+// let [main, , secondary] = restaurant.categories;
+// console.log(main, secondary);
+//
+// // const temp = main;
+// // main = secondary;
+// // secondary = temp;
+// // console.log(main, secondary);
+//
+// [main, secondary] = [secondary, main];
+// console.log(main, secondary);
+//
+// // 接收一个函数的两个返回值
+// const [starter, mainCourse] = restaurant.order(2, 0);
+// console.log(starter, mainCourse);
+//
+// // 嵌套解构
+// const nested = [2, 4, [5, 6]];
+// // const [i, , j] = nested;
+// // console.log(i, j);
+// const [i, , [j, k]] = nested;
+// console.log(i, j, k);
+//
+// // 默认值
+// const [p = 1, q = 1, r = 1] = [8, 9];
+// console.log(p, q, r);
