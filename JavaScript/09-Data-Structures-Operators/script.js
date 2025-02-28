@@ -87,6 +87,51 @@ const restaurant = {
   },
 };
 
+// ------------------------------------ Set ------------------------------------ //
+const orderSet = new Set([
+  "Pasta",
+  "Pizza",
+  "Pizza",
+  "Risotto",
+  "Pasta",
+  "Pizza",
+]);
+console.log(orderSet);
+
+// 创建集合
+console.log(new Set("ey Zh"));
+
+// 查看集合大小
+console.log(orderSet.size);
+
+// 查看某元素是否在集合中
+console.log(orderSet.has("Pizza"));
+console.log(orderSet.has("Bread"));
+
+// 添加元素到集合
+orderSet.add("Garlic Bread");
+orderSet.add("Garlic Bread");
+console.log(orderSet);
+
+// 从集合中删除元素
+orderSet.delete("Risotto");
+console.log(orderSet);
+
+// 清空集合
+// orderSet.clear();
+// console.log(orderSet);
+
+// 遍历集合
+for (const order of orderSet) {
+  console.log(order);
+}
+
+// 示例：清除数组中的重复元素
+const staff = ["Waiter", "Chef", "Waiter", "Manager", "Chef", "Waiter"];
+const staffUnique = [...new Set(staff)];
+console.log(staffUnique);
+console.log(new Set(staff).size);
+console.log(new Set("aabcdeeff").size);
 // ------------------------------------ Array Destructuring ------------------------------------ //
 // const arr = [2, 3, 4];
 // const a = arr[0];
