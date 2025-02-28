@@ -87,52 +87,100 @@ const restaurant = {
   },
 };
 
-// ------------------------------------ Map ------------------------------------ //
-// 创建映射
-const rest = new Map();
+// ------------------------------------ Map Iteration ------------------------------------ //
+const question = new Map([
+  ["question", "What is the best programming language in the world?"],
+  [1, "C"],
+  [2, "Java"],
+  [3, "JavaScript"],
+  ["correct", 3],
+  [true, "Correct 🎇"],
+  [false, "try again"],
+]);
+console.log(question);
 
-// 添加键值对到映射
-rest.set("name", "Classico Italiano");
-rest.set(1, "Firenze, Italy");
-console.log(rest.set(2, "Lisbon, Portugal"));
+// 将对象转换为映射
+console.log(Object.entries(openingHours));
+const hoursMap = new Map(Object.entries(openingHours));
+console.log(hoursMap);
 
-// 设置键值对：链式调用
-rest
-  .set("categories", ["Italian", "Pizzeria", "Vegetarian", "Organic"])
-  .set("open", 11)
-  .set("close", 23)
-  .set(true, "We are open :D")
-  .set(false, "We are closed :(");
+// 遍历映射的示例
+console.log(question.get("question"));
+for (const [key, value] of question) {
+  if (typeof key === "number") {
+    console.log(`Answer ${key}: ${value}`);
+  }
+}
+// const answer = Number(prompt("Your answer:"));
+const answer = 3;
+console.log(question.get(answer === Number(question.get("correct"))));
 
-// 通过获取值
-console.log(rest.get("name"));
-console.log(rest.get(true));
-console.log(rest.get(1));
+// 将映射转换为数组
+console.log([...question]);
+console.log([...question.keys()]);
+console.log([...question.values()]);
+// console.log([...question.entries()]);
 
-const time = 8;
-console.log(rest.get(time > rest.get("open") && time < rest.get("close")));
-
-// 判断键是否存在
-console.log(rest.has("categories"));
-
-// 根据键删除某个键值对
-rest.delete(2);
-console.log(rest);
-
-// 获取映射的大小
-console.log(rest.size);
-
-// 清空映射
-// rest.clear();
+// ------------------------------------ Map Fundamentals ------------------------------------ //
+// // 创建映射
+// const rest = new Map();
+//
+// // 添加键值对到映射
+// rest.set("name", "Classico Italiano");
+// rest.set(1, "Firenze, Italy");
+// console.log(rest.set(2, "Lisbon, Portugal"));
+//
+// // 设置键值对：链式调用
+// rest
+//   .set("categories", ["Italian", "Pizzeria", "Vegetarian", "Organic"])
+//   .set("open", 11)
+//   .set("close", 23)
+//   .set(true, "We are open :D")
+//   .set(false, "We are closed :(");
+//
+// // 通过键获取值
+// console.log(rest.get("name"));
+// console.log(rest.get(true));
+// console.log(rest.get(1));
+//
+// const time = 8;
+// console.log(rest.get(time > rest.get("open") && time < rest.get("close")));
+//
+// // 获取映射的所有键，返回一个迭代器类型
+// rest.keys();
+// // 将迭代器转换为数组
+// const keysArr = [...rest.keys()];
+// console.log(keysArr);
+//
+// // 获取映射的所有值,返回一个迭代器类型
+// rest.values();
+// // 将迭代器转换为数组
+// const valuesArr = [...rest.values()];
+// console.log(valuesArr);
+//
+// // 判断键是否存在
+// console.log(rest.has("categories"));
+//
+// // 根据键删除某个键值对
+// rest.delete(2);
 // console.log(rest);
+//
+// // 获取映射的大小
 // console.log(rest.size);
+//
+// // 清空映射
+// // rest.clear();
+// // console.log(rest);
+// // console.log(rest.size);
+//
+// // 数组作为映射的键
+// const arr = [1, 2];
+// rest.set(arr, "Test");
+// rest.set(document.querySelector("h1"), "Heading");
+// console.log(rest);
+//
+// console.log(rest.get(arr));
 
-const arr = [1, 2];
-rest.set(arr, "Test");
-rest.set(document.querySelector("h1"), "Heading");
-console.log(rest);
-
-console.log(rest.get(arr));
 // ------------------------------------ Object Destructuring ------------------------------------ //
 // // 在函数参数中解构对象
 // restaurant.orderDelivery({
