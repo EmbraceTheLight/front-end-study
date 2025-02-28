@@ -26,15 +26,15 @@ const mexicanFoods = new Set([
 const weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 
 const openingHours = {
-  [weekdays[4]]: {
+  [weekdays[3]]: {
     open: 12,
     close: 22,
   },
-  [weekdays[5]]: {
+  [weekdays[4]]: {
     open: 11,
     close: 23,
   },
-  [weekdays[6]]: {
+  [weekdays[5]]: {
     open: 0, // Open 24 hours
     close: 24,
   },
@@ -86,6 +86,32 @@ const restaurant = {
     console.log(otherIngredients);
   },
 };
+
+// ------------------------------------ Optional Chaining ------------------------------------ //
+if (restaurant.openingHours && restaurant.openingHours.mon) {
+  console.log(restaurant.openingHours.mon.open);
+}
+
+//Optional Chaining
+console.log(restaurant.openingHours.mon?.open);
+console.log(restaurant.openingHours?.mon?.open);
+
+//Example
+const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+for (const day of days) {
+  const open = restaurant.openingHours[day]?.open ?? "closed";
+  console.log(`On ${day}, we open at ${open}`);
+}
+
+//Method
+console.log(restaurant.order?.(0, 1) ?? "Method does not exist");
+console.log(restaurant.orderRisotto?.(0, 1) ?? "Method does not exist");
+
+//Array
+// const users = [{ name: "ey", email: "hello@world.org" }];
+const users = [];
+
+console.log(users[0]?.name ?? "user array empty");
 
 // ------------------------------------ Array Destructuring ------------------------------------ //
 // const arr = [2, 3, 4];
