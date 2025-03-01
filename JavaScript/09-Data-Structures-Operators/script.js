@@ -87,6 +87,150 @@ const restaurant = {
   },
 };
 
+// ------------------------------------ String ------------------------------------ //
+const airline = "TAP Air Portugal";
+const plane = "A320";
+
+console.log(plane[0]); // A
+console.log(plane[1]); // 3
+console.log(plane[2]); // 2
+console.log("B737"[0]); // B
+
+console.log(airline.length); // 16
+console.log("B737".length); // 4
+
+console.log(airline.indexOf("r")); // 6
+console.log(airline.lastIndexOf("r")); // 10
+console.log(airline.indexOf("Portugal"));
+
+console.log(airline.slice(4));
+console.log(airline.slice(4, 7));
+
+console.log(airline.slice(0, airline.indexOf(" ")));
+console.log(airline.slice(airline.lastIndexOf(" ") + 1));
+
+console.log(airline.slice(-2));
+console.log(airline.slice(1, -1));
+
+const checkMiddleSeat = function (seat) {
+  // B 或 E 是中间座位
+  const s = seat.slice(-1);
+  if (s === "B" || s === "E") {
+    console.log("You get the middle seat 😵");
+  } else {
+    console.log("You get lucky 😎");
+  }
+};
+checkMiddleSeat("11B");
+checkMiddleSeat("23C");
+checkMiddleSeat("3E");
+
+console.log(typeof new String("Hello World"));
+console.log(typeof new String("Hello World").slice(1));
+
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+
+// 将字符串首字母大写，其余小写
+const passenger = "eYZH";
+const passengerLower = passenger.toLowerCase();
+const passengerCorrect = passenger[0].toUpperCase() + passengerLower.slice(1);
+console.log(passengerCorrect);
+
+// 比较邮箱地址
+const email = "hello@world.org";
+const loginEmail = " Hello@World.org \n";
+
+// const lowerEmail = loginEmail.toLowerCase();
+// const trimmedEmail = loginEmail.trim();
+const normalizedEmail = loginEmail.toLowerCase().trim();
+console.log(normalizedEmail);
+console.log(normalizedEmail === email);
+
+// 字符串替换
+const priceGB = "288,97￡";
+const priceUS = priceGB.replace("￡", "$").replace(",", ".");
+console.log(priceUS);
+
+const announcement =
+  "All passengers come to boarding door 23, Boarding door 23!";
+
+console.log(announcement.replace("door", "gate"));
+// console.log(announcement.replaceAll("door", "gate"));
+
+console.log(announcement.replace(/door/g, "gate"));
+
+// 字符串检查的一些方法
+const plane1 = "Airbus A320neo";
+console.log(plane1.includes("A320"));
+console.log(plane1.includes("Boeing"));
+console.log(plane1.startsWith("Air"));
+
+if (plane1.startsWith("Airbus") && plane1.endsWith("neo")) {
+  console.log("part of the NEW airbus family");
+}
+
+// 练习
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase();
+  if (baggage.includes("knife") || baggage.includes("gun")) {
+    console.log("You are NOT allowed ton board");
+  } else {
+    console.log("Welcome aboard!");
+  }
+};
+checkBaggage("I have a laptop, some Food and a pocket Knife");
+checkBaggage("Socks and camera");
+checkBaggage("Get some snacks and a gun for protection");
+
+// split 和 join
+console.log("a+very+nice+string".split("+"));
+console.log("Ey Zh".split(" "));
+
+const [firstName, lastName] = "Ey Zh".split(" ");
+
+const newName = ["Mr.", firstName, lastName.toUpperCase()].join(" ");
+console.log(newName);
+
+const capitalizeName = function (name) {
+  const names = name.split(" ");
+  const namesUpper = [];
+
+  for (const n of names) {
+    // namesUpper.push(n[0].toUpperCase() + n.slice(1));
+    namesUpper.push(n.replace(n[0], n[0].toUpperCase()));
+  }
+  console.log(namesUpper.join(" "));
+};
+
+capitalizeName("jessica ann smith davis");
+capitalizeName("ey zh");
+
+// 字符串填充
+const message = "Go to gate 23!";
+console.log(message.padStart(25, "+").padEnd(30, "+"));
+console.log("ey".padStart(20, "+").padEnd(30, "+"));
+
+const maskCreditCard = function (number) {
+  const str = number + "";
+  const last = str.slice(-4);
+  return last.padStart(str.length, "*");
+};
+
+console.log(maskCreditCard(1234567890));
+console.log(maskCreditCard("153215315315312323321465"));
+
+// 重复
+const message2 = "Bad weather... All Departures Delayed...";
+console.log(message2.repeat(3));
+
+const planesInLine = function (n) {
+  console.log(`The are ${n} planes in line ${"✈️".repeat(n)}`);
+};
+planesInLine(5);
+planesInLine(3);
+planesInLine(12);
+
 // ------------------------------------ Object Destructuring ------------------------------------ //
 // // 在函数参数中解构对象
 // restaurant.orderDelivery({
@@ -544,44 +688,44 @@ Let's continue with our football betting app! This time, we have a map with a lo
 
 GOOD LUCK 😀
 */
-const gameEvents = new Map([
-  [17, "⚽️ GOAL"],
-  [36, "🔁 Substitution"],
-  [47, "⚽️ GOAL"],
-  [61, "🔁 Substitution"],
-  [64, "🔶 Yellow card"],
-  [69, "🔴 Red card"],
-  [70, "🔁 Substitution"],
-  [72, "🔁 Substitution"],
-  [76, "⚽️ GOAL"],
-  [80, "⚽️ GOAL"],
-  [92, "🔶 Yellow card"],
-]);
-
-// 1.
-const events = [...new Set(gameEvents.values())];
-console.log(events);
-
-// 2.
-gameEvents.delete(64);
-console.log(gameEvents);
-
-// 3.
-const times = [...gameEvents.keys()].pop();
-console.log(
-  `An event happened, on average, every ${times / gameEvents.size} minutes`,
-);
-
-// 4.
-const firstOrSecond = new Map([
-  [true, "[FIRST HALF]"],
-  [false, "[SECOND HALF]"],
-]);
-console.log(firstOrSecond);
-
-for (const [minute, event] of gameEvents) {
-  console.log(`${firstOrSecond.get(minute <= 45)}: ${event}`);
-}
+// const gameEvents = new Map([
+//   [17, "⚽️ GOAL"],
+//   [36, "🔁 Substitution"],
+//   [47, "⚽️ GOAL"],
+//   [61, "🔁 Substitution"],
+//   [64, "🔶 Yellow card"],
+//   [69, "🔴 Red card"],
+//   [70, "🔁 Substitution"],
+//   [72, "🔁 Substitution"],
+//   [76, "⚽️ GOAL"],
+//   [80, "⚽️ GOAL"],
+//   [92, "🔶 Yellow card"],
+// ]);
+//
+// // 1.
+// const events = [...new Set(gameEvents.values())];
+// console.log(events);
+//
+// // 2.
+// gameEvents.delete(64);
+// console.log(gameEvents);
+//
+// // 3.
+// const times = [...gameEvents.keys()].pop();
+// console.log(
+//   `An event happened, on average, every ${times / gameEvents.size} minutes`,
+// );
+//
+// // 4.
+// const firstOrSecond = new Map([
+//   [true, "[FIRST HALF]"],
+//   [false, "[SECOND HALF]"],
+// ]);
+// console.log(firstOrSecond);
+//
+// for (const [minute, event] of gameEvents) {
+//   console.log(`${firstOrSecond.get(minute <= 45)}: ${event}`);
+// }
 
 // ------------------------------------ Set ------------------------------------ //
 // const orderSet = new Set([
