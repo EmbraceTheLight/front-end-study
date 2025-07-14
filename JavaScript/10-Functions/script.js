@@ -103,3 +103,54 @@
 //   console.log(`${greeting} ${name}`);
 //
 // greetArrowFunction("Hi")("zey");
+
+// ------------------------------------ The call and apply methods ------------------------------------ //
+// const lufthansa = {
+//   airline: "Lufthansa",
+//   iatacode: "LH",
+//   bookings: [],
+//   book(flightNum, name) {
+//     console.log(
+//       `${name} booked a seat on ${this.airline} flight ${this.iatacode}${flightNum}`,
+//     );
+//     this.bookings.push({ flight: `${this.iatacode}${flightNum}`, name });
+//   },
+// };
+//
+// lufthansa.book(123, "zey");
+// lufthansa.book(635, "John Smith");
+// console.log(lufthansa);
+//
+// const eurowings = {
+//   airline: "Eurowings",
+//   iatacode: "EW",
+//   bookings: [],
+// };
+//
+// const book = lufthansa.book;
+//
+// // 不会正常工作
+// // book(23, "Sarah Williams");
+// // console.log(eurowings);
+//
+// // 函数的call方法
+// book.call(eurowings, 23, "Sarah Williams");
+// console.log(eurowings);
+//
+// book.call(lufthansa, 123, "Mary Cooper");
+// console.log(lufthansa);
+//
+// const swiss = {
+//   airline: "Swiss Air Lines",
+//   iatacode: "LX",
+//   bookings: [],
+// };
+// book.call(swiss, 583, "Mary Cooper");
+// console.log(swiss);
+//
+// // 函数的Apply方法
+// const flightData = [583, "Geroge Cooper"];
+// book.apply(swiss, flightData); //  等价于 book.call(swiss, ...flightData);
+// console.log(swiss);
+//
+// book.call(swiss, ...flightData);
