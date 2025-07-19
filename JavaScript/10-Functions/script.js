@@ -330,3 +330,64 @@
 // }
 // // console.log(isPrivate);
 // console.log(notPrivate);
+
+// ------------------------------------ Closures ------------------------------------ //
+// const secureBooking = function () {
+//   let passengerCount = 0;
+//   return function () {
+//     passengerCount++;
+//     console.log(`${passengerCount} passengers`);
+//   };
+// };
+//
+// const booker = secureBooking();
+//
+// booker();
+// booker();
+// booker();
+//
+// console.dir(booker);
+//
+// // Examples of Closures
+// // Examples 1
+// let f;
+//
+// const g = function () {
+//   const a = 23;
+//   f = function () {
+//     console.log(a * 2);
+//   };
+// };
+//
+// g();
+// f();
+// console.dir(f);
+//
+// const h = function () {
+//   const b = 777;
+//   f = function () {
+//     console.log(b * 2);
+//   };
+// };
+//
+// // 对 f 重新赋值。
+// h();
+// f();
+// console.dir(f);
+//
+// // Examples 2
+// const boardPassengers = function (n, wait) {
+//   const perGroup = n / 3;
+//   // jshint -W117
+//   setTimeout(function () {
+//     console.log(`We are now boarding all ${n} passengers`);
+//     console.log(`There are 3 groups, each with ${perGroup} passengers`);
+//   }, wait * 1000);
+//
+//   console.log(`Will start boarding in ${wait} seconds`);
+// };
+//
+// // boardPassengers 中的 setTimeout异步函数内部的 perGroup 变量会覆盖全局的 perGroup 变量。
+// // 因为闭包优先于作用域链。
+// const perGroup = 1000;
+// boardPassengers(180, 3);
