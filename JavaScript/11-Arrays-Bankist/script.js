@@ -76,7 +76,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
-// ------------------------------------ Array methods ------------------------------------ //
+// ------------------------------------ Array methods: slice, splice, reverse, concat, join ------------------------------------ //
 // let arr = ["a", "b", "c", "d", "e"];
 //
 // // SLICE method
@@ -116,3 +116,17 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 //
 // // JOIN method
 // console.log(letters.join(" - "));
+
+// ------------------------------------ Array methods: at ---------- //
+// const arr = [23, 11, 64];
+// console.log(arr[0]); // 23
+// console.log(arr.at(0)); // 23
+//
+// // getting the last element of an array
+// console.log(arr[arr.length - 1]); // 64
+// console.log(arr.slice(-1)[0]); // 64
+// console.log(arr.at(-1)); // 64
+//
+// // at method can also be used with strings
+// console.log("hunterETL".at(0)); // "h"
+// console.log("hunterETL".at(-1)); // "L"
