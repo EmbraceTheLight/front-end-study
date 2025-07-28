@@ -91,7 +91,12 @@ const createUsernames = function (accs) {
   });
 };
 createUsernames(accounts);
-console.log(accounts);
+
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance} EUR`;
+};
+calcDisplayBalance(account1.movements);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -286,3 +291,22 @@ console.log(depositsFor);
 
 const withdrawals = movements.filter((mov) => mov < 0);
 console.log(withdrawals);
+//
+// Filter method
+// const balance = movements.reduce(function (acc, cur, i, arr) {
+//   console.log(`Iteration ${i}: ${acc}`);
+//   return acc + cur;
+// }, 0);
+const balance = movements.reduce((acc, cur) => acc + cur, 0);
+console.log(balance);
+
+let balance2 = 0;
+for (const mov of movements) balance2 += mov;
+console.log(balance2);
+
+// reduce 寻找最大值
+const maxValue = movements.reduce(function (acc, cur) {
+  return acc < cur ? cur : acc;
+}, movements[0]);
+// const maxValue = movements.reduce((acc, cur) => (acc < cur ? cur : acc), movements[0]);
+console.log(maxValue);
