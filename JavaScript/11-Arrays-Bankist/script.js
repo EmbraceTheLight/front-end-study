@@ -526,23 +526,44 @@ GOOD LUCK 😀
 // console.log(account);
 
 // ------------------------------------ Some and Every Method ------------------------------------ //
-//////// some method
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// //////// some method
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+//
+// // includes 判断相等逻辑
+// console.log(movements.includes(-130));
+//
+// // some 判断是否有元素满足条件
+// console.log(movements.some((mov) => mov === -130));
+//
+// const anyDeposits = movements.some((mov) => mov > 500);
+// console.log(anyDeposits);
+//
+// //////// every method
+// console.log(account4.movements.every((mov) => mov > 0));
+//
+// // separate callback
+// const deposit = (mov) => mov > 0;
+// console.log(movements.some(deposit));
+// console.log(movements.every(deposit));
+// console.log(movements.filter(deposit));
 
-// includes 判断相等逻辑
-console.log(movements.includes(-130));
+// ------------------------------------ flat and flatMap Method ------------------------------------ //
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr.flat());
 
-// some 判断是否有元素满足条件
-console.log(movements.some((mov) => mov === -130));
+const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+console.log(arrDeep.flat());
+console.log(arrDeep.flat(2));
 
-const anyDeposits = movements.some((mov) => mov > 500);
-console.log(anyDeposits);
+//////// flat
+const overallBalance = accounts
+  .map((acc) => acc.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalance);
 
-//////// every method
-console.log(account4.movements.every((mov) => mov > 0));
-
-// separate callback
-const deposit = (mov) => mov > 0;
-console.log(movements.some(deposit));
-console.log(movements.every(deposit));
-console.log(movements.filter(deposit));
+//////// flatMap
+const overallBalance2 = accounts
+  .flatMap((acc) => acc.movements)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalance2);
