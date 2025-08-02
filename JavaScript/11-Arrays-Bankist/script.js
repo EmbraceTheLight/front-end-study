@@ -171,6 +171,25 @@ btnTransfer.addEventListener("click", function (e) {
     updateUI(currentAccount);
   }
 });
+
+btnLoan.addEventListener("click", function (e) {
+  e.preventDefault();
+  const amount = Number(inputLoanAmount.value);
+
+  if (
+    amount > 0 &&
+    currentAccount.movements.some((mov) => mov >= amount * 0.1)
+  ) {
+    // Add movement
+    currentAccount.movements.push(amount);
+
+    // Update UI
+    updateUI(currentAccount);
+
+    inputLoanAmount.value = "";
+  }
+});
+
 btnClose.addEventListener("click", function (e) {
   e.preventDefault();
 
@@ -495,13 +514,35 @@ GOOD LUCK 😀
 // console.log(avg2);
 
 // ------------------------------------ Find Method ------------------------------------ //
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+//
+// // find 返回第一个匹配的元素
+// const firstWithdrawal = movements.find((mov) => mov < 0);
+// console.log(firstWithdrawal);
+//
+// console.log(accounts);
+//
+// const account = accounts.find((acc) => acc.owner === "Jessica Davis");
+// console.log(account);
+
+// ------------------------------------ Some and Every Method ------------------------------------ //
+//////// some method
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-// find 返回第一个匹配的元素
-const firstWithdrawal = movements.find((mov) => mov < 0);
-console.log(firstWithdrawal);
+// includes 判断相等逻辑
+console.log(movements.includes(-130));
 
-console.log(accounts);
+// some 判断是否有元素满足条件
+console.log(movements.some((mov) => mov === -130));
 
-const account = accounts.find((acc) => acc.owner === "Jessica Davis");
-console.log(account);
+const anyDeposits = movements.some((mov) => mov > 500);
+console.log(anyDeposits);
+
+//////// every method
+console.log(account4.movements.every((mov) => mov > 0));
+
+// separate callback
+const deposit = (mov) => mov > 0;
+console.log(movements.some(deposit));
+console.log(movements.every(deposit));
+console.log(movements.filter(deposit));
