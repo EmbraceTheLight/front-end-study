@@ -579,27 +579,63 @@ GOOD LUCK 😀
 // console.log(overallBalance2);
 
 // ------------------------------------ sort Method ------------------------------------ //
-const owners = ["Jonas", "Zach", "Adam", "Martha"];
-console.log(owners.sort());
-console.log(owners);
+// const owners = ["Jonas", "Zach", "Adam", "Martha"];
+// console.log(owners.sort());
+// console.log(owners);
+//
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// // console.log(movements.sort());
+//
+// // return < 0, A, B
+// // return > 0, B, A
+// //// 升序
+// // movements.sort(function (a, b) {
+// //   if (a > b) return 1;
+// //   if (a < b) return -1;
+// // });
+// movements.sort((a, b) => a - b);
+// console.log(movements);
+//
+// //// 降序
+// // movements.sort(function (a, b) {
+// //   if (a > b) return -1;
+// //   if (a < b) return 1;
+// // });
+// movements.sort((a, b) => b - a);
+// console.log(movements);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-// console.log(movements.sort());
+// ------------------------------------ create and fill arrays ------------------------------------ //
+const arr = [1, 2, 3, 4, 5, 6, 7];
+console.log(new Array(1, 2, 3, 4, 5, 6, 7));
 
-// return < 0, A, B
-// return > 0, B, A
-//// 升序
-// movements.sort(function (a, b) {
-//   if (a > b) return 1;
-//   if (a < b) return -1;
-// });
-movements.sort((a, b) => a - b);
-console.log(movements);
+// Empty array + fill method
+const x = new Array(7);
+console.log(x);
+console.log(x.map(() => 5));
 
-//// 降序
-// movements.sort(function (a, b) {
-//   if (a > b) return -1;
-//   if (a < b) return 1;
-// });
-movements.sort((a, b) => b - a);
-console.log(movements);
+x.fill(1, 3, 6);
+console.log(x); // [1, 1, 1, 1, 1, 1, 1]
+
+arr.fill(23, 4, 6);
+console.log(arr);
+
+// Array.from method
+const y = Array.from({ length: 7 }, () => 2);
+console.log(y);
+
+const z = Array.from({ length: 7 }, (_, i) => i + 1);
+console.log(z);
+
+const movementsUI = Array.from(document.querySelectorAll(".movements__value"));
+console.log(movementsUI);
+
+labelBalance.addEventListener("click", function () {
+  const movementsUI = Array.from(
+    document.querySelectorAll(".movements__value"),
+    (el) => el.textContent.replace("€", ""),
+  );
+  console.log(movementsUI);
+
+  const movementsUI2 = [...document.querySelectorAll(".movements__value")];
+  console.log(movementsUI2);
+});
