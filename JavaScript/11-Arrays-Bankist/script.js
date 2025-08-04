@@ -605,37 +605,85 @@ GOOD LUCK 😀
 // console.log(movements);
 
 // ------------------------------------ create and fill arrays ------------------------------------ //
-const arr = [1, 2, 3, 4, 5, 6, 7];
-console.log(new Array(1, 2, 3, 4, 5, 6, 7));
+// const arr = [1, 2, 3, 4, 5, 6, 7];
+// console.log(new Array(1, 2, 3, 4, 5, 6, 7));
+//
+// // Empty array + fill method
+// const x = new Array(7);
+// console.log(x);
+// console.log(x.map(() => 5));
+//
+// x.fill(1, 3, 6);
+// console.log(x); // [1, 1, 1, 1, 1, 1, 1]
+//
+// arr.fill(23, 4, 6);
+// console.log(arr);
+//
+// // Array.from method
+// const y = Array.from({ length: 7 }, () => 2);
+// console.log(y);
+//
+// const z = Array.from({ length: 7 }, (_, i) => i + 1);
+// console.log(z);
+//
+// const movementsUI = Array.from(document.querySelectorAll(".movements__value"));
+// console.log(movementsUI);
+//
+// labelBalance.addEventListener("click", function () {
+//   const movementsUI = Array.from(
+//     document.querySelectorAll(".movements__value"),
+//     (el) => el.textContent.replace("€", ""),
+//   );
+//   console.log(movementsUI);
+//
+//   const movementsUI2 = [...document.querySelectorAll(".movements__value")];
+//   console.log(movementsUI2);
+// });
 
-// Empty array + fill method
-const x = new Array(7);
-console.log(x);
-console.log(x.map(() => 5));
+// ------------------------------------ Array Methods Practice ------------------------------------ //
+// 1.
+const bankDepositSum = accounts
+  .flatMap((acc) => acc.movements)
+  .filter((mov) => mov > 0)
+  .reduce((sum, cur) => sum + cur, 0);
 
-x.fill(1, 3, 6);
-console.log(x); // [1, 1, 1, 1, 1, 1, 1]
+console.log(bankDepositSum);
 
-arr.fill(23, 4, 6);
-console.log(arr);
+// 2.
+// const numDeposits1000 = accounts
+//   .flatMap((acc) => acc.movements)
+//   .filter((mov) => mov >= 1000).length;
+const numDeposits1000 = accounts
+  .flatMap((acc) => acc.movements)
+  .reduce((count, cur) => (cur >= 1000 ? count + 1 : count), 0);
+console.log(numDeposits1000);
 
-// Array.from method
-const y = Array.from({ length: 7 }, () => 2);
-console.log(y);
-
-const z = Array.from({ length: 7 }, (_, i) => i + 1);
-console.log(z);
-
-const movementsUI = Array.from(document.querySelectorAll(".movements__value"));
-console.log(movementsUI);
-
-labelBalance.addEventListener("click", function () {
-  const movementsUI = Array.from(
-    document.querySelectorAll(".movements__value"),
-    (el) => el.textContent.replace("€", ""),
+// 3.
+const { deposits, withdrawals } = accounts
+  .flatMap((acc) => acc.movements)
+  .reduce(
+    (sums, cur) => {
+      // cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur);
+      sums[cur > 0 ? "deposits" : "withdrawals"] += cur;
+      return sums;
+    },
+    { deposits: 0, withdrawals: 0 },
   );
-  console.log(movementsUI);
+console.log(deposits, withdrawals);
 
-  const movementsUI2 = [...document.querySelectorAll(".movements__value")];
-  console.log(movementsUI2);
-});
+// 4.
+// this is a nice title -> This Is a Nice Title
+const convertTitleCase = function (title) {
+  const capitalized = (str) => str[0].toUpperCase() + str.slice(1);
+  const exceptions = ["a", "an", "and", "the", "but", "or", "on", "in", "with"];
+
+  const titleCase = title
+    .toLowerCase()
+    .split(" ")
+    .map((word) => (exceptions.includes(word) ? word : capitalized(word)))
+    .join(" ");
+  return capitalized(titleCase);
+};
+console.log(convertTitleCase("this is a nice title"));
+console.log(convertTitleCase("this is a long title but not too long"));
+console.log(convertTitleCase("and here is another title with an EXAMPLE"));
