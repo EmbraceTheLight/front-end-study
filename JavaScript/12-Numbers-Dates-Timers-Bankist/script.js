@@ -361,19 +361,52 @@ btnSort.addEventListener("click", function (e) {
 // });
 
 // ------------------------------ Numeric Separators ------------------------------//
-const diameter = 287_460_000_000;
-console.log(diameter);
+// const diameter = 287_460_000_000;
+// console.log(diameter);
+//
+// const price = 345_99;
+// console.log(price);
+//
+// const transferFee1 = 15_00;
+// const transferFee2 = 1_500;
+//
+// const PI = 3.14_15;
+// console.log(PI);
+//
+// console.log(Number(230_000));
+// console.log(Number("230_000"));
+// console.log(parseInt("230_000"));
+// console.log(Number(transferFee1));
 
-const price = 345_99;
-console.log(price);
+// ------------------------------ bigint ------------------------------ //
+console.log(2 ** 53 - 1); // 9007199254740991
+console.log(Number.MAX_SAFE_INTEGER); // 9007199254740991
+console.log(2 ** 53 + 1); // 9007199254740992
+console.log(2 ** 53 + 2); // 9007199254740994
+console.log(2 ** 53 + 3); // 9007199254740996
+console.log(2 ** 53 + 4); // 9007199254740996
 
-const transferFee1 = 15_00;
-const transferFee2 = 1_500;
+console.log(982376829164783124692856728356327853248973284653287392048327n); // 982376829164783124692856728356327853248973284653287392048327n
+console.log(
+  BigInt(982376829164783124692856728356327853248973284653287392048327), // 982376829164783117757955425451991155605277268279589181849600n
+);
 
-const PI = 3.14_15;
-console.log(PI);
+// Operations
+console.log(10000n + 10000n);
+console.log(498371263284672385723485693245625623985673821462n * 100000000n); // 49837126328467238572348569324562562398567382146200000000n
+// console.log(Math.sqrt(16n));
 
-console.log(Number(230_000));
-console.log(Number("230_000"));
-console.log(parseInt("230_000"));
-console.log(Number(transferFee1));
+const huge = 2319827483742895634879564837564876n;
+const num = 23;
+console.log(huge * BigInt(num)); // 53356032126086599602229991263992148n
+
+console.log(20n > 15); // true
+console.log(20n === 20); // false
+console.log(typeof 20n); // bigint
+console.log(20n == 20); // true
+
+console.log(huge + "is REALLY big!!!");
+
+// divisions
+console.log(10n / 3n); // 3n
+console.log(10 / 3); // 3.3333333333333335
