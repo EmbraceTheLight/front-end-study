@@ -82,7 +82,7 @@ const inputClosePin = document.querySelector(".form__input--pin");
 /////////////////////////////////////////////////
 // Functions
 
-const formatMovementsDate = function (date) {
+const formatMovementsDate = function (date, locale) {
   const calcDaysPassed = function (date1, date2) {
     return Math.round(Math.abs((date2 - date1) / (1000 * 60 * 60 * 24)));
   };
@@ -93,12 +93,13 @@ const formatMovementsDate = function (date) {
   if (daysPassed === 1) return "yesterday";
   if (daysPassed <= 7) return `${daysPassed} days ago`;
   else {
-    const day = `${date.getDate()}`.padStart(2, "0");
-    const month = `${date.getMonth() + 1}`.padStart(2, "0");
-    const year = date.getFullYear();
-
-    // dat/month/year
-    return `${day}/${month}/${year}`;
+    // const day = `${date.getDate()}`.padStart(2, "0");
+    // const month = `${date.getMonth() + 1}`.padStart(2, "0");
+    // const year = date.getFullYear();
+    //
+    // // dat/month/year
+    // return `${day}/${month}/${year}`;
+    return new Intl.DateTimeFormat(locale).format(date);
   }
 };
 
@@ -111,7 +112,7 @@ const displayMovements = function (acc, sort = false) {
   movs.forEach(function (mov, i) {
     const type = mov > 0 ? "deposit" : "withdrawal";
     const date = new Date(acc.movementsDates[i]);
-    const displayDate = formatMovementsDate(date);
+    const displayDate = formatMovementsDate(date, acc.locale);
     const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${
@@ -201,13 +202,28 @@ btnLogin.addEventListener("click", function (e) {
 
     // Create current day and time
     // format: day/month/year
+    // const now = new Date();
     const now = new Date();
-    const day = `${now.getDate()}`.padStart(2, "0");
-    const month = `${now.getMonth() + 1}`.padStart(2, "0");
-    const year = now.getFullYear();
-    const hour = `${now.getHours()}`.padStart(2, "0");
-    const min = `${now.getMinutes()}`.padStart(2, "0");
-    labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
+    const options = {
+      hour: "numeric",
+      minute: "numeric",
+      day: "numeric",
+      month: "numeric",
+      year: "numeric",
+      // weekday: "long",
+    };
+    // const locale = navigator.language;
+    // console.log(locale);
+    labelDate.textContent = new Intl.DateTimeFormat(
+      currentAccount.locale,
+      options,
+    ).format(now);
+    // const day = `${now.getDate()}`.padStart(2, "0");
+    // const month = `${now.getMonth() + 1}`.padStart(2, "0");
+    // const year = now.getFullYear();
+    // const hour = `${now.getHours()}`.padStart(2, "0");
+    // const min = `${now.getMinutes()}`.padStart(2, "0");
+    // labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
 
     // Clear input fields
     inputLoginUsername.value = inputLoginPin.value = "";
@@ -492,12 +508,12 @@ btnSort.addEventListener("click", function (e) {
 // console.log(future);
 
 // ------------------------------ date operations ------------------------------ //
-const future = new Date(2037, 10, 19, 15, 23);
-console.log(Number(future));
-
-const calcDaysPassed = function (date1, date2) {
-  return Math.abs((date2 - date1) / (1000 * 60 * 60 * 24));
-};
-
-const days1 = calcDaysPassed(new Date(2037, 3, 4), new Date(2037, 3, 14));
-console.log(days1);
+// const future = new Date(2037, 10, 19, 15, 23);
+// console.log(Number(future));
+//
+// const calcDaysPassed = function (date1, date2) {
+//   return Math.abs((date2 - date1) / (1000 * 60 * 60 * 24));
+// };
+//
+// const days1 = calcDaysPassed(new Date(2037, 3, 4), new Date(2037, 3, 14));
+// console.log(days1);
