@@ -379,34 +379,70 @@ btnSort.addEventListener("click", function (e) {
 // console.log(Number(transferFee1));
 
 // ------------------------------ bigint ------------------------------ //
-console.log(2 ** 53 - 1); // 9007199254740991
-console.log(Number.MAX_SAFE_INTEGER); // 9007199254740991
-console.log(2 ** 53 + 1); // 9007199254740992
-console.log(2 ** 53 + 2); // 9007199254740994
-console.log(2 ** 53 + 3); // 9007199254740996
-console.log(2 ** 53 + 4); // 9007199254740996
+// console.log(2 ** 53 - 1); // 9007199254740991
+// console.log(Number.MAX_SAFE_INTEGER); // 9007199254740991
+// console.log(2 ** 53 + 1); // 9007199254740992
+// console.log(2 ** 53 + 2); // 9007199254740994
+// console.log(2 ** 53 + 3); // 9007199254740996
+// console.log(2 ** 53 + 4); // 9007199254740996
+//
+// console.log(982376829164783124692856728356327853248973284653287392048327n); // 982376829164783124692856728356327853248973284653287392048327n
+// console.log(
+//   BigInt(982376829164783124692856728356327853248973284653287392048327), // 982376829164783117757955425451991155605277268279589181849600n
+// );
+//
+// // Operations
+// console.log(10000n + 10000n);
+// console.log(498371263284672385723485693245625623985673821462n * 100000000n); // 49837126328467238572348569324562562398567382146200000000n
+// // console.log(Math.sqrt(16n));
+//
+// const huge = 2319827483742895634879564837564876n;
+// const num = 23;
+// console.log(huge * BigInt(num)); // 53356032126086599602229991263992148n
+//
+// console.log(20n > 15); // true
+// console.log(20n === 20); // false
+// console.log(typeof 20n); // bigint
+// console.log(20n == 20); // true
+//
+// console.log(huge + "is REALLY big!!!");
+//
+// // divisions
+// console.log(10n / 3n); // 3n
+// console.log(10 / 3); // 3.3333333333333335
 
-console.log(982376829164783124692856728356327853248973284653287392048327n); // 982376829164783124692856728356327853248973284653287392048327n
-console.log(
-  BigInt(982376829164783124692856728356327853248973284653287392048327), // 982376829164783117757955425451991155605277268279589181849600n
-);
+// ------------------------------ dates and time ------------------------------ //
+// Create a date
+const now = new Date();
+console.log(now);
 
-// Operations
-console.log(10000n + 10000n);
-console.log(498371263284672385723485693245625623985673821462n * 100000000n); // 49837126328467238572348569324562562398567382146200000000n
-// console.log(Math.sqrt(16n));
+console.log(new Date("Aug 10 2025 15:44:50"));
+console.log(new Date("December 24, 2015"));
+console.log(new Date(account1.movementsDates[0]));
 
-const huge = 2319827483742895634879564837564876n;
-const num = 23;
-console.log(huge * BigInt(num)); // 53356032126086599602229991263992148n
+console.log(new Date(2037, 10, 19, 15, 23, 5));
+console.log(new Date(2037, 10, 31));
+console.log(new Date(2037, 10, 33));
 
-console.log(20n > 15); // true
-console.log(20n === 20); // false
-console.log(typeof 20n); // bigint
-console.log(20n == 20); // true
+console.log(new Date(0));
+console.log(new Date(3 * 24 * 60 * 60 * 1000));
 
-console.log(huge + "is REALLY big!!!");
+// working with dates
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(future);
+console.log(future.getFullYear());
+console.log(future.getMonth());
+console.log(future.getDate());
+console.log(future.getDay());
+console.log(future.getHours());
+console.log(future.getMinutes());
+console.log(future.getSeconds());
+console.log(future.toISOString());
+console.log(future.getTime());
 
-// divisions
-console.log(10n / 3n); // 3n
-console.log(10 / 3); // 3.3333333333333335
+console.log(new Date(2142228180000));
+
+console.log(Date.now());
+
+future.setFullYear(2040);
+console.log(future);
