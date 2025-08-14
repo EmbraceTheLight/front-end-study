@@ -31,3 +31,39 @@ document.addEventListener("keydown", function (e) {
     closeModal();
   }
 });
+
+// ------------------------------ Select、Create and Delete Elements ------------------------------//
+// select elements
+console.log(document.documentElement);
+console.log(document.head);
+console.log(document.body);
+
+const header = document.querySelector(".header");
+const allSection = document.querySelectorAll(".section");
+console.log(allSection);
+
+document.getElementById("section--1");
+const allButtons = document.getElementsByTagName("button");
+console.log(allButtons);
+
+console.log(document.getElementsByClassName("btn"));
+
+// create and insert elements
+// .insertAdjacentHTML
+const message = document.createElement("div");
+message.classList.add("cookie-message");
+// message.textContent =
+//   "We use cookied for improved for improved functionality and analytics.";
+message.innerHTML =
+  "We use cookied for improved for improved functionality and analytics.<button class='btn'>Got it!</button>";
+
+header.prepend(message);
+// header.append(message);
+// header.append(message.cloneNode(true));
+// header.before(message);
+// header.after(message);
+
+// Delete elements
+document.querySelector(".btn").addEventListener("click", function () {
+  message.remove();
+});
