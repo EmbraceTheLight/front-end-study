@@ -33,84 +33,113 @@ document.addEventListener("keydown", function (e) {
 });
 
 // ------------------------------ Select、Create and Delete Elements ------------------------------//
-// select elements
-console.log(document.documentElement);
-console.log(document.head);
-console.log(document.body);
-
-const header = document.querySelector(".header");
-const allSection = document.querySelectorAll(".section");
-console.log(allSection);
-
-document.getElementById("section--1");
-const allButtons = document.getElementsByTagName("button");
-console.log(allButtons);
-
-console.log(document.getElementsByClassName("btn"));
-
-// create and insert elements
-// .insertAdjacentHTML
-const message = document.createElement("div");
-message.classList.add("cookie-message");
-// message.textContent =
-//   "We use cookied for improved for improved functionality and analytics.";
-message.innerHTML =
-  "We use cookied for improved for improved functionality and analytics.<button class='btn'>Got it!</button>";
-
-header.prepend(message);
-// header.append(message);
-// header.append(message.cloneNode(true));
-// header.before(message);
-// header.after(message);
-
-// Delete elements
-document.querySelector(".btn").addEventListener("click", function () {
-  message.remove();
-});
+// // select elements
+// console.log(document.documentElement);
+// console.log(document.head);
+// console.log(document.body);
+//
+// const header = document.querySelector(".header");
+// const allSection = document.querySelectorAll(".section");
+// console.log(allSection);
+//
+// document.getElementById("section--1");
+// const allButtons = document.getElementsByTagName("button");
+// console.log(allButtons);
+//
+// console.log(document.getElementsByClassName("btn"));
+//
+// // create and insert elements
+// // .insertAdjacentHTML
+// const message = document.createElement("div");
+// message.classList.add("cookie-message");
+// // message.textContent =
+// //   "We use cookied for improved for improved functionality and analytics.";
+// message.innerHTML =
+//   "We use cookied for improved for improved functionality and analytics.<button class='btn'>Got it!</button>";
+//
+// header.prepend(message);
+// // header.append(message);
+// // header.append(message.cloneNode(true));
+// // header.before(message);
+// // header.after(message);
+//
+// // Delete elements
+// document.querySelector(".btn").addEventListener("click", function () {
+//   message.remove();
+// });
 
 // ------------------------------ Style、Attribute and Class ------------------------------//
-// styles
-message.style.backgroundColor = "#37383d";
-message.style.width = "120%";
+// // styles
+// message.style.backgroundColor = "#37383d";
+// message.style.width = "120%";
+//
+// console.log(message.style.color);
+// console.log(message.style.backgroundColor);
+//
+// console.log(getComputedStyle(message).color);
+// console.log(getComputedStyle(message).backgroundColor);
+// console.log(getComputedStyle(message).height);
+//
+// message.style.height =
+//   Number.parseFloat(getComputedStyle(message).height) + 30 + "px";
+//
+// document.documentElement.style.setProperty("--color-primary", "orangered");
+//
+// // Attributes
+// const logo = document.querySelector(".nav__logo");
+// console.log(logo.src);
+// console.log(logo.getAttribute("src"));
+// console.log(logo.alt);
+// console.log(logo.className);
+//
+// logo.alt = "Beautiful minimalist logo";
+//
+// // Non-standard attributes
+// console.log(logo.designer);
+// console.log(logo.getAttribute("designer"));
+// logo.setAttribute("company", "Banlist");
+//
+// const link = document.querySelector(".nav__link--btn");
+// console.log(link.href);
+// console.log(link.getAttribute("href"));
+//
+// // Data attributes
+// console.log(logo.dataset.versionNumber);
+//
+// // classes
+// logo.classList.add("c", "j");
+// logo.classList.remove("c", "j");
+// logo.classList.toggle("c");
+// logo.classList.contains("c");
+//
+// // Don't use this method, because it will override all classes
+// logo.className = "dd";
 
-console.log(message.style.color);
-console.log(message.style.backgroundColor);
+// ------------------------------ Smooth Scrolling ------------------------------//
+const btnScrollTo = document.querySelector(".btn--scroll-to");
+const section1 = document.querySelector("#section--1");
 
-console.log(getComputedStyle(message).color);
-console.log(getComputedStyle(message).backgroundColor);
-console.log(getComputedStyle(message).height);
+btnScrollTo.addEventListener("click", function (e) {
+  const s1cords = section1.getBoundingClientRect();
+  console.log(s1cords);
+  console.log(e.target.getBoundingClientRect());
+  console.log("Current scroll (X/Y)", window.scrollX, window.scrollY);
 
-message.style.height =
-  Number.parseFloat(getComputedStyle(message).height) + 30 + "px";
+  console.log(
+    "height/width",
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth,
+  );
 
-document.documentElement.style.setProperty("--color-primary", "orangered");
+  // scrolling
+  // window.scrollTo(s1cords.left + window.scrollX, s1cords.top + window.scrollY);
 
-// Attributes
-const logo = document.querySelector(".nav__logo");
-console.log(logo.src);
-console.log(logo.getAttribute("src"));
-console.log(logo.alt);
-console.log(logo.className);
+  // window.scrollTo({
+  //   left: s1cords.left + window.scrollX,
+  //   top: s1cords.top + window.scrollY,
+  //   behavior: "smooth",
+  // });
 
-logo.alt = "Beautiful minimalist logo";
-
-// Non-standard attributes
-console.log(logo.designer);
-console.log(logo.getAttribute("designer"));
-logo.setAttribute("company", "Banlist");
-
-const link = document.querySelector(".nav__link--btn");
-console.log(link.href);
-console.log(link.getAttribute("href"));
-
-// Data attributes
-console.log(logo.dataset.versionNumber);
-
-// classes
-logo.classList.add("c", "j");
-logo.classList.remove("c", "j");
-logo.classList.toggle("c");
-logo.classList.contains("c");
-
-// Don't use this method, because it will override all classes
-logo.className = "dd";
+  // Modern method to scroll to an element
+  section1.scrollIntoView({ behavior: "smooth" });
+});
