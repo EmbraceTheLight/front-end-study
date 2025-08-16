@@ -145,14 +145,49 @@ btnScrollTo.addEventListener("click", function (e) {
 });
 
 // ------------------------------ Add && Remove Scrolling ------------------------------//
-const h1 = document.querySelector("h1");
-
-const alertH1 = function (e) {
-  alert("addEventListener: Great! You are reading the heading :D");
-};
-h1.addEventListener("mouseenter", alertH1);
-
-setTimeout(() => h1.removeEventListener("mouseenter", alertH1), 3000);
-// h1.onmouseover = function (e) {
+// const h1 = document.querySelector("h1");
+//
+// const alertH1 = function (e) {
 //   alert("addEventListener: Great! You are reading the heading :D");
 // };
+// h1.addEventListener("mouseenter", alertH1);
+//
+// setTimeout(() => h1.removeEventListener("mouseenter", alertH1), 3000);
+// // h1.onmouseover = function (e) {
+// //   alert("addEventListener: Great! You are reading the heading :D");
+// // };
+
+// ------------------------------ Event Propagation ------------------------------//
+// Random color generator --- rgb format
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+const randomColor = () =>
+  `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+console.log(randomColor());
+
+document.querySelector(".nav__link").addEventListener("click", function (e) {
+  e.preventDefault();
+  this.style.backgroundColor = randomColor();
+  console.log("LINK", e.target, e.currentTarget);
+
+  // Stop event propagation
+  // e.stopPropagation();
+});
+
+document.querySelector(".nav__links").addEventListener("click", function (e) {
+  e.preventDefault();
+  this.style.backgroundColor = randomColor();
+  console.log("CONTAINER", e.target, e.currentTarget);
+  console.log(this === e.currentTarget);
+});
+
+document.querySelector(".nav").addEventListener(
+  "click",
+  function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.style.backgroundColor = randomColor();
+    console.log("NAV", e.target, e.currentTarget);
+  },
+  // true,
+);
