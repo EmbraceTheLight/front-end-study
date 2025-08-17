@@ -1,12 +1,13 @@
 "use strict";
 
-///////////////////////////////////////
-// Modal window
-
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
 const btnCloseModal = document.querySelector(".btn--close-modal");
 const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
+const btnScrollTo = document.querySelector(".btn--scroll-to");
+const section1 = document.querySelector("#section--1");
+///////////////////////////////////////
+// Modal window
 
 const openModal = function (e) {
   e.preventDefault();
@@ -29,6 +30,49 @@ overlay.addEventListener("click", closeModal);
 document.addEventListener("keydown", function (e) {
   if (e.key === "Escape" && !modal.classList.contains("hidden")) {
     closeModal();
+  }
+});
+
+///////////////////////////////////////
+// Button scrolling
+btnScrollTo.addEventListener("click", function (e) {
+  // scrolling
+  // const s1cords = section1.getBoundingClientRect();
+  // window.scrollTo(s1cords.left + window.scrollX, s1cords.top + window.scrollY);
+
+  // window.scrollTo({
+  //   left: s1cords.left + window.scrollX,
+  //   top: s1cords.top + window.scrollY,
+  //   behavior: "smooth",
+  // });
+
+  // Modern method to scroll to an element
+  section1.scrollIntoView({ behavior: "smooth" });
+});
+
+///////////////////////////////////////
+// Page navigation、
+// document.querySelectorAll(".nav__link").forEach(function (el) {
+//   el.addEventListener("click", function (e) {
+//     e.preventDefault();
+//     console.log("LINK");
+//     const id = this.getAttribute("href");
+//     console.log(id);
+//     document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+//   });
+// });
+
+// event delegation
+// 1. Add event listener to common  element
+// 2. Determine what element originated the event
+document.querySelector(".nav__links").addEventListener("click", function (e) {
+  e.preventDefault();
+
+  // Matching strategy
+  if (e.target.classList.contains("nav__link")) {
+    const id = e.target.getAttribute("href");
+    console.log(id);
+    document.querySelector(id).scrollIntoView({ behavior: "smooth" });
   }
 });
 
@@ -116,33 +160,33 @@ document.addEventListener("keydown", function (e) {
 // logo.className = "dd";
 
 // ------------------------------ Smooth Scrolling ------------------------------//
-const btnScrollTo = document.querySelector(".btn--scroll-to");
-const section1 = document.querySelector("#section--1");
-
-btnScrollTo.addEventListener("click", function (e) {
-  const s1cords = section1.getBoundingClientRect();
-  console.log(s1cords);
-  console.log(e.target.getBoundingClientRect());
-  console.log("Current scroll (X/Y)", window.scrollX, window.scrollY);
-
-  console.log(
-    "height/width",
-    document.documentElement.clientHeight,
-    document.documentElement.clientWidth,
-  );
-
-  // scrolling
-  // window.scrollTo(s1cords.left + window.scrollX, s1cords.top + window.scrollY);
-
-  // window.scrollTo({
-  //   left: s1cords.left + window.scrollX,
-  //   top: s1cords.top + window.scrollY,
-  //   behavior: "smooth",
-  // });
-
-  // Modern method to scroll to an element
-  section1.scrollIntoView({ behavior: "smooth" });
-});
+// const btnScrollTo = document.querySelector(".btn--scroll-to");
+// const section1 = document.querySelector("#section--1");
+//
+// btnScrollTo.addEventListener("click", function (e) {
+//   const s1cords = section1.getBoundingClientRect();
+//   console.log(s1cords);
+//   console.log(e.target.getBoundingClientRect());
+//   console.log("Current scroll (X/Y)", window.scrollX, window.scrollY);
+//
+//   console.log(
+//       "height/width",
+//       document.documentElement.clientHeight,
+//       document.documentElement.clientWidth,
+//   );
+//
+//   // scrolling
+//   // window.scrollTo(s1cords.left + window.scrollX, s1cords.top + window.scrollY);
+//
+//   // window.scrollTo({
+//   //   left: s1cords.left + window.scrollX,
+//   //   top: s1cords.top + window.scrollY,
+//   //   behavior: "smooth",
+//   // });
+//
+//   // Modern method to scroll to an element
+//   section1.scrollIntoView({ behavior: "smooth" });
+// });
 
 // ------------------------------ Add && Remove Scrolling ------------------------------//
 // const h1 = document.querySelector("h1");
@@ -158,36 +202,36 @@ btnScrollTo.addEventListener("click", function (e) {
 // // };
 
 // ------------------------------ Event Propagation ------------------------------//
-// Random color generator --- rgb format
-const randomInt = (min, max) =>
-  Math.floor(Math.random() * (max - min + 1) + min);
-const randomColor = () =>
-  `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
-console.log(randomColor());
-
-document.querySelector(".nav__link").addEventListener("click", function (e) {
-  e.preventDefault();
-  this.style.backgroundColor = randomColor();
-  console.log("LINK", e.target, e.currentTarget);
-
-  // Stop event propagation
-  // e.stopPropagation();
-});
-
-document.querySelector(".nav__links").addEventListener("click", function (e) {
-  e.preventDefault();
-  this.style.backgroundColor = randomColor();
-  console.log("CONTAINER", e.target, e.currentTarget);
-  console.log(this === e.currentTarget);
-});
-
-document.querySelector(".nav").addEventListener(
-  "click",
-  function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    this.style.backgroundColor = randomColor();
-    console.log("NAV", e.target, e.currentTarget);
-  },
-  // true,
-);
+// // Random color generator --- rgb format
+// const randomInt = (min, max) =>
+//   Math.floor(Math.random() * (max - min + 1) + min);
+// const randomColor = () =>
+//   `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+// console.log(randomColor());
+//
+// document.querySelector(".nav__link").addEventListener("click", function (e) {
+//   e.preventDefault();
+//   this.style.backgroundColor = randomColor();
+//   console.log("LINK", e.target, e.currentTarget);
+//
+//   // Stop event propagation
+//   // e.stopPropagation();
+// });
+//
+// document.querySelector(".nav__links").addEventListener("click", function (e) {
+//   e.preventDefault();
+//   this.style.backgroundColor = randomColor();
+//   console.log("CONTAINER", e.target, e.currentTarget);
+//   console.log(this === e.currentTarget);
+// });
+//
+// document.querySelector(".nav").addEventListener(
+//   "click",
+//   function (e) {
+//     e.preventDefault();
+//     e.stopPropagation();
+//     this.style.backgroundColor = randomColor();
+//     console.log("NAV", e.target, e.currentTarget);
+//   },
+//   // true,
+// );
