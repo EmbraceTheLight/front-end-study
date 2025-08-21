@@ -207,6 +207,47 @@ const imgObserver = new IntersectionObserver(loadImg, {
   rootMargin: "200px",
 });
 imgTargets.forEach((img) => imgObserver.observe(img));
+
+// Slider
+const slides = document.querySelectorAll(".slide");
+const buttonLeft = document.querySelector(".slider__btn--left");
+const buttonRight = document.querySelector(".slider__btn--right");
+
+let curSlide = 0;
+const maxSlide = slides.length;
+
+const slider = document.querySelector(".slider");
+
+// slider.style.transform = "scale(0.3) translateX(-800px)";
+// slider.style.overflow = "visible";
+
+const goToSlide = function (slide) {
+  slides.forEach(
+    (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`),
+  );
+};
+goToSlide(0);
+
+// Next Slide
+const nextSlide = function () {
+  if (curSlide === maxSlide - 1) {
+    curSlide = 0;
+  } else {
+    curSlide++;
+  }
+  goToSlide(curSlide);
+};
+
+const prevSlide = function () {
+  if (curSlide === 0) {
+    curSlide = maxSlide - 1;
+  } else {
+    curSlide--;
+  }
+  goToSlide(curSlide);
+};
+buttonRight.addEventListener("click", nextSlide);
+buttonLeft.addEventListener("click", prevSlide);
 // ------------------------------ Select、Create and Delete Elements ------------------------------//
 // // select elements
 // console.log(document.documentElement);
