@@ -1,33 +1,39 @@
 "use strict";
 
 // ------------------------------ constructor and new operator ------------------------------//
-// const Person = function (firstName, birthYear) {
-//   // console.log(this);
-//
-//   // Instance properties
-//   this.firstName = firstName;
-//   this.birthYear = birthYear;
-//
-//   // Never use method below, it's not a good practice to add methods to the object
-//   // this.calcAge = function () {
-//   //   console.log(2037 - this.birthYear);
-//   // };
-// };
-//
-// const jonas = new Person("Jonas", 1991);
-// console.log(jonas);
+const Person = function (firstName, birthYear) {
+  // console.log(this);
+
+  // Instance properties
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+
+  // Never use method below, it's not a good practice to add methods to the object
+  // this.calcAge = function () {
+  //   console.log(2037 - this.birthYear);
+  // };
+};
+
+const jonas = new Person("Jonas", 1991);
+console.log(jonas);
 // 1. New {} is created
 // 2. function is called, this = {}
 // 3. {} linked to prototype
 // 4. function automatically returns {}
-//
-// const matilda = new Person("Matilda", 2017);
-// const jack = new Person("Jack", 1975);
-// console.log(matilda, jack);
-//
-// const jay = "Jay";
-// console.log(jonas instanceof Person);
-// console.log(jay instanceof Person);
+
+const matilda = new Person("Matilda", 2017);
+const jack = new Person("Jack", 1975);
+console.log(matilda, jack);
+
+const jay = "Jay";
+console.log(jonas instanceof Person);
+console.log(jay instanceof Person);
+
+Person.hey = function () {
+  console.log("Hey there 👏");
+  console.log(this);
+};
+Person.hey();
 
 // ------------------------------ prototype ------------------------------//
 // console.log(Person.prototype);
@@ -119,7 +125,8 @@ class PersonCl {
     this.birthYear = birthYear;
   }
 
-  // Methods will be added to .prototype property
+  // Instance methods
+  // These methods will be added to .prototype property
   calcAge() {
     console.log(2037 - this.birthYear);
   }
@@ -142,7 +149,14 @@ class PersonCl {
   get fullName() {
     return this._fullName;
   }
+
+  // static method
+  static hey() {
+    console.log("Hey there 👏");
+    console.log(this);
+  }
 }
+PersonCl.hey();
 
 const jessica = new PersonCl("Jessica Davis", 1996);
 console.log(jessica);
@@ -160,20 +174,22 @@ console.log(jessica.age);
 const walter = new PersonCl("Walter White", 1965);
 
 // ------------------------------ Setters and Getters ------------------------------//
-const account = {
-  owner: "jonas",
-  movements: [200, 530, 120, 300],
+// const account = {
+//   owner: "jonas",
+//   movements: [200, 530, 120, 300],
+//
+//   get latest() {
+//     return this.movements.slice(-1).pop();
+//   },
+//
+//   set latest(mov) {
+//     this.movements.push(mov);
+//   },
+// };
+//
+// console.log(account.latest);
+//
+// account.latest = 50;
+// console.log(account.movements);
 
-  get latest() {
-    return this.movements.slice(-1).pop();
-  },
-
-  set latest(mov) {
-    this.movements.push(mov);
-  },
-};
-
-console.log(account.latest);
-
-account.latest = 50;
-console.log(account.movements);
+// ------------------------------ static methods ------------------------------//
