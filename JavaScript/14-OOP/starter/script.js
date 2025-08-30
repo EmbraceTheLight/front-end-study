@@ -132,7 +132,7 @@ class PersonCl {
   }
 
   greet() {
-    console.log(`Hey ${this.firstName}`);
+    console.log(`Hey ${this.fullName}`);
   }
 
   get age() {
@@ -192,4 +192,25 @@ const walter = new PersonCl("Walter White", 1965);
 // account.latest = 50;
 // console.log(account.movements);
 
-// ------------------------------ static methods ------------------------------//
+// ------------------------------ Object.create ------------------------------//
+const PersonProto = {
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+    return this;
+  },
+};
+
+const steven = Object.create(PersonProto);
+console.log(steven);
+steven.name = "Steven";
+steven.birthYear = 2002;
+steven.calcAge();
+
+console.log(steven.__proto__ === PersonProto);
+const sarah = Object.create(PersonProto).init("Sarah", 1979);
+sarah.calcAge();
