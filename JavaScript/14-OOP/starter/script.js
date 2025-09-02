@@ -461,20 +461,23 @@ class Account {
 
   deposit(val) {
     this.#movements.push(val);
+    return this;
   }
 
   withdraw(val) {
     this.deposit(-val);
+    return this;
   }
 
   requestLoan(val) {
     if (this.#approveLoan(val)) {
       this.deposit(val);
       console.log(`Loan approved`);
+      return this;
     }
   }
 
-  static helper() {
+  static #helper() {
     console.log("Helper");
   }
 
@@ -493,9 +496,12 @@ acc1.deposit(250);
 acc1.withdraw(140);
 acc1.requestLoan(1000);
 console.log(acc1.getMovements());
-
 console.log(acc1);
+// Account.#helper(); // Error: Static methods must be called on the class, not an instance of the class
 
 // console.log(acc1.#movements); // Error: Private field '#movements' must be declared in an enclosing class
 // console.log(acc1.#pin); // Error: Private field '#movements' must be declared in an enclosing class
-Account.helper(); // Error: Static methods must be called on the class, not an instance of the class
+
+// Chaining methods
+acc1.deposit(300).deposit(500).withdraw(35).requestLoan(25000).withdraw(4000);
+console.log(acc1.getMovements());
