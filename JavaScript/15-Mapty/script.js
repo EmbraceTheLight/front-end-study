@@ -326,3 +326,15 @@ class App {
 }
 
 const app = new App();
+
+// Challenge：
+// 1. Edit a workout
+// 2. Delete a workout
+// 3. Delete all workouts
+// 4. Sort workouts by a certain field
+// 5. Rebuild Running and Cycling classes objects from local storage
+// 6. More realistic error and confirmation messages
+// 7. Position the map to show all workouts[hard]
+// 8. Draw lines and shapes instead of just points[hard]
+// 9. Geocode location from coordinates and show it on the map
+// 10. Display weather for workout time and place
