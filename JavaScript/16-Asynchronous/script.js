@@ -262,19 +262,17 @@ const whereAmI = function (lat, lng) {
     .then(function (data) {
       console.log(data);
       console.log(`You are in ${data.city}, ${data.countryName}!`);
-      console.log(`https://restcountries.com/v3.1/alpha/${data.countryCode}`);
       return getJSONv2(
         `https://restcountries.com/v3.1/alpha/${data.countryCode}`,
       );
     })
     .then(function (data) {
-      console.log(data[0]);
+      // Country 1
+      renderCountry(data[0]);
 
-      renderCountry(data);
       if (!data[0].hasOwnProperty('borders'))
         throw new Error('No neighbour found');
 
-      console.log(data[0]);
       const neighbor = data[0].borders[0];
 
       // Country 2
@@ -283,16 +281,18 @@ const whereAmI = function (lat, lng) {
         'Country not found',
       );
     })
-    .then(data => renderCountry(data[0], 'neighbour'))
+    // .then(data => renderCountry(data[0], 'neighbour'))
     .catch(err => {
       console.error(`${err} 💥💥💥`);
       renderError(`Something went wrong 💥💥 ${err.message}`);
+    })
+    .finally(() => {
+      countriesContainer.style.opacity = '1';
     });
-  // .finally(() => {
-  //   countriesContainer.style.opacity = '1';
-  // });
 };
 
+whereAmI(52.508, 13.381);
+whereAmI(52.508, 13.381);
 whereAmI(52.508, 13.381);
 whereAmI(19.037, 72.873);
 whereAmI(-33.933, 18.474);
