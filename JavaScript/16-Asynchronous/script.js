@@ -298,11 +298,74 @@ btn.addEventListener('click', function () {
 // whereAmI(-33.933, 18.474);
 
 // ------------------------------ Event Loop ------------------------------ //
-console.log('Test Start');
-setTimeout(() => console.log('0 sec timer'), 0);
-Promise.resolve('Resolved Promise 1').then(res => console.log(res));
-Promise.resolve('Resolved Promise 2').then(res => {
-  for (let i = 0; i < 100000000000; i++) {}
-  console.log(res);
+// console.log('Test Start');
+// setTimeout(() => console.log('0 sec timer'), 0);
+// Promise.resolve('Resolved Promise 1').then(res => console.log(res));
+// Promise.resolve('Resolved Promise 2').then(res => {
+//   for (let i = 0; i < 100000000000; i++) {}
+//   console.log(res);
+// });
+// console.log('Test end');
+
+// ------------------------------ Building a Promise ------------------------------ //
+const lotteryPromise = new Promise(function (resolve, reject) {
+  console.log('Lottery started');
+
+  setTimeout(function () {
+    if (Math.random() >= 0.5) {
+      resolve('you WIN 💰');
+    } else {
+      reject(new Error('You lost your money 💩'));
+    }
+  }, 2000);
 });
-console.log('Test end');
+
+lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
+
+// Promisifying setTimeout
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
+  });
+};
+
+wait(2)
+  .then(() => {
+    console.log('I waited for 2 seconds');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('I waited for 1 second');
+  });
+
+// setTimeout(() => {
+//   console.log('1 second passed');
+//   setTimeout(() => {
+//     console.log('2 seconds passed');
+//     setTimeout(() => {
+//       console.log('3 seconds passed');
+//       setTimeout(() => {
+//         console.log('4 seconds passed');
+//       }, 1000);
+//     }, 1000);
+//   }, 1000);
+// }, 1000);
+wait(1)
+  .then(() => {
+    console.log('1 second passed');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('2 seconds passed');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('3 seconds passed');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('4 seconds passed');
+  });
+
+Promise.resolve('abc').then(x => console.log(x));
+Promise.reject(new Error('Problem!')).catch(x => console.error(x));
