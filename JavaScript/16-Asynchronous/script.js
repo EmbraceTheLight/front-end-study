@@ -18,7 +18,7 @@ const renderCountry = function (data, className = '') {
         </article>
   `;
   countriesContainer.insertAdjacentHTML('beforeend', html);
-  // countriesContainer.style.opacity = '1';
+  countriesContainer.style.opacity = '1';
 };
 
 const renderError = function (msg) {
@@ -463,50 +463,83 @@ TEST DATA: Images in the img folder. Test the error handler by passing a wrong i
 
 GOOD LUCK 😀
 */
-const imageContainer = document.querySelector('.images');
-let currentImg;
+// const imageContainer = document.querySelector('.images');
+// let currentImg;
+//
+// const wait = function (seconds) {
+//   return new Promise(function (resolve) {
+//     setTimeout(resolve, seconds * 1000);
+//   });
+// };
+// const createImage = function (imgPath) {
+//   return new Promise(function (resolve, reject) {
+//     const imgElement = document.createElement('img');
+//     imgElement.src = imgPath;
+//     imgElement.addEventListener('error', function (e) {
+//       reject(new Error(`Error loading image ${imgPath}`));
+//     });
+//     imgElement.addEventListener('load', function (e) {
+//       imageContainer.append(imgElement);
+//       resolve(imgElement);
+//     });
+//   });
+// };
+//
+// const loadImages = function (imgPath1, imgPath2) {
+//   createImage(imgPath1)
+//     .then(imgEl => {
+//       console.log('Image 1 loaded');
+//       currentImg = imgEl;
+//       return wait(2);
+//     })
+//     .then(() => {
+//       currentImg.style.display = 'none';
+//       return createImage(imgPath2);
+//     })
+//     .then(imgEl => {
+//       console.log('Image 2 loaded');
+//       currentImg = imgEl;
+//       return wait(2);
+//     })
+//     .then(() => {
+//       currentImg.style.display = 'none';
+//     })
+//     .catch(err => {
+//       console.error(err);
+//     });
+// };
+//
+// loadImages('./img/img-1.jpg', './img/img-2.jpg');
 
-const wait = function (seconds) {
-  return new Promise(function (resolve) {
-    setTimeout(resolve, seconds * 1000);
-  });
-};
-const createImage = function (imgPath) {
+// ------------------------------ Async await ------------------------------ //
+const getPosition = function () {
   return new Promise(function (resolve, reject) {
-    const imgElement = document.createElement('img');
-    imgElement.src = imgPath;
-    imgElement.addEventListener('error', function (e) {
-      reject(new Error(`Error loading image ${imgPath}`));
-    });
-    imgElement.addEventListener('load', function (e) {
-      imageContainer.append(imgElement);
-      resolve(imgElement);
-    });
+    navigator.geolocation.getCurrentPosition(resolve, reject);
   });
 };
 
-const loadImages = function (imgPath1, imgPath2) {
-  createImage(imgPath1)
-    .then(imgEl => {
-      console.log('Image 1 loaded');
-      currentImg = imgEl;
-      return wait(2);
-    })
-    .then(() => {
-      currentImg.style.display = 'none';
-      return createImage(imgPath2);
-    })
-    .then(imgEl => {
-      console.log('Image 2 loaded');
-      currentImg = imgEl;
-      return wait(2);
-    })
-    .then(() => {
-      currentImg.style.display = 'none';
-    })
-    .catch(err => {
-      console.error(err);
-    });
-};
+const whereAmI = async function () {
+  // Geolocation
+  const pos = await getPosition();
+  const { latitude: lat, longitude: lng } = pos.coords;
 
-loadImages('./img/img-1.jpg', './img/img-2.jpg');
+  // reverse geocoding
+  const resGeo = await fetch(
+    `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`,
+  );
+  const dataGeo = await resGeo.json();
+  console.log(dataGeo);
+
+  // Country data
+  // Syntax sugar: await
+  const res = await fetch(
+    `https://restcountries.com/v3.1/name/${dataGeo.countryName}`,
+  );
+
+  console.log(res);
+  const data = await res.json();
+
+  renderCountry(data[1]);
+};
+whereAmI();
+console.log('FIRST');
