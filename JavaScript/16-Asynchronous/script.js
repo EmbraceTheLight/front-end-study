@@ -530,29 +530,46 @@ const whereAmI = async function () {
     );
     if (!resGeo.ok) throw new Error(`Problem getting location data`);
     const dataGeo = await resGeo.json();
-    console.log(dataGeo);
 
     // Country data
     // Syntax sugar: await
     const res = await fetch(
-      `https://restcountries.com/v3.1/name/${dataGeo.countryName}`,
+      `https://restcountries.com/v3.1/name/${dataGeo.countryNamedsadas}`,
     );
     if (!res.ok) throw new Error(`Problem getting country`);
 
-    console.log(res);
     const data = await res.json();
 
     renderCountry(data[1]);
+
+    return `You are in ${dataGeo.city},${dataGeo.countryName}`;
   } catch (err) {
     console.error(err.message);
     renderError(`Something went wrong 💥💥 ${err.message}`);
+
+    // Reject promise returned from async function
+    throw err;
   }
 };
-whereAmI();
-whereAmI();
-whereAmI();
-console.log('FIRST');
 
+console.log(`1: will get location`);
+// const city = whereAmI();
+// console.log(city);
+// whereAmI()
+//   .then(city => console.log(`2: ${city}`))
+//   .catch(err => console.error(`2: ${err.message} 💥`))
+//   .finally(() => console.log(`3: will Finished getting location`));
+
+(async function () {
+  try {
+    const city = await whereAmI();
+    console.log(`2: ${city}`);
+  } catch (err) {
+    console.error(err.message);
+  } finally {
+    console.log(`3: will Finished getting location`);
+  }
+});
 // try {
 //   let y = 1;
 //   const x = 2;
