@@ -42,32 +42,45 @@
 
 // -------------------------------- Module Pattern -------------------------------- //
 // import { cart } from "./shoppingCart.js";
+//
+// const shoppingCart2 = (function () {
+//   const cart = [];
+//   const shoppingCost = 10;
+//   const totalPrice = 237;
+//   const totalQuantity = 23;
+//
+//   const addToCart = function (product, quantity) {
+//     cart.push({ product, quantity });
+//     console.log(`${quantity} ${product} added to cart
+//     (shopping cost is ${shoppingCost})`);
+//   };
+//
+//   const orderStock = function (product, quantity) {
+//     console.log(`${quantity} ${product} ordered from supplier.`);
+//   };
+//
+//   return {
+//     addToCart,
+//     cart,
+//     totalPrice,
+//     totalQuantity,
+//   };
+// })();
+//
+// shoppingCart2.addToCart("apple", 4);
+// shoppingCart2.addToCart("pizza", 2);
+// console.log(shoppingCart2);
+// console.log(shoppingCart2.shoppingCart);
 
-const shoppingCart2 = (function () {
-  const cart = [];
-  const shoppingCost = 10;
-  const totalPrice = 237;
-  const totalQuantity = 23;
+// -------------------------------- CommonJS Module Pattern -------------------------------- //
 
-  const addToCart = function (product, quantity) {
+// Export
+export.addToCart = function (product, quantity) {
     cart.push({ product, quantity });
-    console.log(`${quantity} ${product} added to cart 
-    (shopping cost is ${shoppingCost})`);
-  };
+    console.log(`${quantity} ${product} added to cart
+    (shopping cost is ${shoppingCost})`
+  );
+};
 
-  const orderStock = function (product, quantity) {
-    console.log(`${quantity} ${product} ordered from supplier.`);
-  };
-
-  return {
-    addToCart,
-    cart,
-    totalPrice,
-    totalQuantity,
-  };
-})();
-
-shoppingCart2.addToCart("apple", 4);
-shoppingCart2.addToCart("pizza", 2);
-console.log(shoppingCart2);
-console.log(shoppingCart2.shoppingCart);
+// Import
+const {addToCart} = require("./shoppingCart")
