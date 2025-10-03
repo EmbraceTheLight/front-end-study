@@ -73,14 +73,34 @@
 // console.log(shoppingCart2.shoppingCart);
 
 // -------------------------------- CommonJS Module Pattern -------------------------------- //
+//
+// // Export
+// export.addToCart = function (product, quantity) {
+//     cart.push({ product, quantity });
+//     console.log(`${quantity} ${product} added to cart
+//     (shopping cost is ${shoppingCost})`
+//   );
+// };
+//
+// // Import
+// const {addToCart} = require("./shoppingCart");
 
-// Export
-export.addToCart = function (product, quantity) {
-    cart.push({ product, quantity });
-    console.log(`${quantity} ${product} added to cart
-    (shopping cost is ${shoppingCost})`
-  );
+// -------------------------------- NPM -------------------------------- //
+import cloneDeep from "./node_modules/lodash-es/cloneDeep.js";
+
+const state = {
+  cart: [
+    { product: "bread", quantity: 5 },
+    { product: "pizza", quantity: 5 },
+  ],
+  user: { loggedIn: true },
 };
 
-// Import
-const {addToCart} = require("./shoppingCart")
+// 浅拷贝
+const stateClone = Object.assign({}, state);
+const stateDeepClone = cloneDeep(state);
+
+state.user.loggedIn = false;
+console.log(stateClone);
+
+console.log(stateDeepClone);
