@@ -12,11 +12,12 @@
 // import add, { addToCart, totalPrice as price, tq } from "./shoppingCart.js";
 // console.log(price, tq);
 
-// import add, { cart } from "./shoppingCart.js";
-// add("pizza", 2);
-// add("bread", 5);
-// add("apples", 4);
-// console.log(cart);
+import add, { cart } from "./shoppingCart.js";
+add("pizza", 2);
+add("bread", 5);
+add("apples", 4);
+console.log(cart);
+console.log("saf");
 
 // console.log("Start fetching");
 // const res = await fetch("https://jsonplaceholder.typicode.com/posts");
@@ -104,3 +105,6 @@ state.user.loggedIn = false;
 console.log(stateClone);
 
 console.log(stateDeepClone);
+if (module.hot) {
+  module.hot.accept();
+}
