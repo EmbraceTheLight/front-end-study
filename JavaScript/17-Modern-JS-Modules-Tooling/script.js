@@ -108,3 +108,20 @@ console.log(stateDeepClone);
 if (module.hot) {
   module.hot.accept();
 }
+
+class Person {
+  #greeting = "Hey";
+  constructor(name) {
+    this.name = name;
+    console.log(`${this.#greeting}, ${this.name}`);
+  }
+}
+const zey = new Person("Zey");
+console.log("zey" ?? null);
+
+console.log(cart.find((item) => item.quantity >= 2));
+Promise.resolve("TEST").then((x) => console.log(x));
+
+// import "core-js/stable";
+import "core-js/stable/array/find.js";
+import "core-js/stable/promise";
