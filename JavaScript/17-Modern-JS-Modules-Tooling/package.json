@@ -1,0 +1,27 @@
+{
+  "name": "17-modern-js-modules-tooling",
+  "version": "1.0.0",
+  "main": "script.js",
+  "type": "module",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "ZEY",
+  "license": "ISC",
+  "description": "",
+  "targets": {
+    "default": {
+      "context": "browser",
+      "outputFormat": "esmodule",
+      "isLibrary": false
+    }
+  },
+  "dependencies": {
+    "core-js": "^3.45.1",
+    "lodash-es": "^4.17.21"
+  },
+  "devDependencies": {
+    "parcel": "^2.16.0"
+  }
+}
