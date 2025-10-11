@@ -19,10 +19,10 @@ export default class View {
         const newDOM = document.createRange().createContextualFragment(newMarkup);
         const newElements = Array.from(newDOM.querySelectorAll('*'));
         const curElements = Array.from(this._parentElement.querySelectorAll('*'));
-        console.log(curElements, newElements)
 
         newElements.forEach((newEl, i)=>{
             const curEl = curElements[i];
+            // console.log(curEl,newEl.isEqualNode(curEl));
 
             // 更新新元素文本内容到现实 DOM 对应元素中
             if (!newEl.isEqualNode(curEl) && newEl.firstChild?.nodeValue.trim() !== '') {
