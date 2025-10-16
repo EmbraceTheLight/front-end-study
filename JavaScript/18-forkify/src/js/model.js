@@ -23,6 +23,10 @@ const createRecipeObject = function(data){
     servings: recipe.servings,
     cookingTime: recipe.cooking_time,
     ingredients: recipe.ingredients,
+
+    // 如果存在 key 字段，则说明是通过 API 上传的，需要添加 key 字段
+    // 使用了 短路+解构
+    ...(recipe.key && {key: recipe.key}),
   };
 }
 
@@ -30,7 +34,7 @@ export const loadRecipe = async function (id) {
   try {
     const data = await getJSON(`${API_URL}/${id}`);
 
-    state.recipe  = createRecipeObject(data.data);
+    state.recipe  = createRecipeObject(data);
 
     // Check if recipe is bookmarked, if yes, set bookmarked property to true
     if (state.bookmarks.some(bookmark => bookmark.id === id))
@@ -144,7 +148,7 @@ export const uploadRecipe =  async function(newRecipe){
     console.log(recipe);
     const data = await sendJSON(`${API_URL}?key=${KEY}`, recipe);
     state.recipe = createRecipeObject(data);
-    console.log(data);
+    addBookmark(state.recipe);
   }catch(err){
     throw err;
   }
