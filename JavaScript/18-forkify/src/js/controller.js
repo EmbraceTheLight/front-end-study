@@ -64,6 +64,7 @@ const controlSearchResults = async function () {
     paginationView.render(model.state.search);
   } catch (err) {
     console.log(err);
+    resultView.renderError(err.message);
   }
 };
 
@@ -127,7 +128,7 @@ const controlAddRecipe = async function (newRecipe){
     // Close form window
     setTimeout(function(){
       addRecipeView.toggleWindow()
-    }, MODEL_CLOSE_SEC);
+    }, MODEL_CLOSE_SEC * 1000);
   }catch (err){
     console.error('💥',err);
     addRecipeView.renderError(err.message);
