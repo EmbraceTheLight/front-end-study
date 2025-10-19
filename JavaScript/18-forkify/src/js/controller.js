@@ -1,0 +1,158 @@
+import * as model from './model.js';
+import { MODEL_CLOSE_SEC } from './config.js';
+import recipeView from './views/recipeView.js';
+import searchView from './views/searchView.js';
+import resultView from './views/resultView.js';
+import paginationView from './views/paginationView.js';
+import bookmarksView from './views/bookmarksView.js';
+import addRecipeView from './views/addRecipeView.js';
+
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+
+// if (module.hot){
+//   module.hot.accept();
+// }
+
+// NEW API URL (instead of the one shown in the video)
+// https://forkify-api.jonas.io
+
+///////////////////////////////////////
+
+const controlRecipes = async function () {
+  try {
+    const id = window.location.hash.slice(1);
+
+    if (!id) return;
+    recipeView.renderSpinner();
+
+    // 0) Update results view to mark selected search result
+    resultView.update(model.getSearchResultPage());
+
+    // 1) update bookmarks view
+    bookmarksView.update(model.state.bookmarks);
+
+    // 2) loading recipe
+    await model.loadRecipe(id);
+
+    // 3) Rendering recipe
+    recipeView.render(model.state.recipe);
+
+    // debugger;
+
+  } catch (err) {
+    recipeView.renderError();
+    console.error(err);
+  }
+};
+
+const controlSearchResults = async function () {
+  try {
+    resultView.renderSpinner();
+
+    // 1) Get search query
+    const query = searchView.getQuery();
+    if (!query) return;
+
+    // 2) Load search results
+    await model.loadSearchResults(query);
+
+    // 3) Render search results
+    resultView.render(model.getSearchResultPage());
+
+    // 4) Render initial pagination buttons
+    paginationView.render(model.state.search);
+  } catch (err) {
+    console.log(err);
+    resultView.renderError(err.message);
+  }
+};
+
+const controlPagination = function(gotoPage){
+  // 1) Render new search results
+  resultView.render(model.getSearchResultPage(gotoPage));
+
+  // 2) Render new pagination buttons
+  paginationView.render(model.state.search);
+}
+
+const controlServings = function (newServings){
+  // Update the recipe servings (in state)
+  model.updateServings(newServings);
+
+  // Update the recipe view
+  // recipeView.render(model.state.recipe);
+  recipeView.update(model.state.recipe);
+}
+
+const controlAddBookmark = function (){
+  // 1) Add/Remove bookmark
+  if(!model.state.recipe.bookmarked)
+    model.addBookmark(model.state.recipe);
+  else
+    model.deleteBookmark(model.state.recipe.id);
+
+  // 2) update recipe view
+  recipeView.update(model.state.recipe);
+
+  // 3) Render bookmarks
+  bookmarksView.render(model.state.bookmarks);
+}
+
+const controlBookmarks = function (){
+  bookmarksView.render(model.state.bookmarks);
+}
+
+const controlAddRecipe = async function (newRecipe){
+  try{
+    // Show loading spinner
+    addRecipeView.renderSpinner();
+
+    // Upload new recipe data
+    await model.uploadRecipe(newRecipe);
+    console.log(model.state.recipe);
+
+    // Render recipe
+    recipeView.render(model.state.recipe);
+
+    // Success message
+    addRecipeView.renderMessage();
+
+    // Render bookmark view
+    bookmarksView.render(model.state.bookmarks);
+
+    // Change ID in URL
+    window.history.pushState(null,"",`#${model.state.recipe.id}`);
+    // window.history.back();
+
+    // Close form window
+    setTimeout(function(){
+      addRecipeView.toggleWindow()
+    }, MODEL_CLOSE_SEC * 1000);
+  }catch (err){
+    console.error('💥',err);
+    addRecipeView.renderError(err.message);
+  }
+}
+
+const init = function () {
+  bookmarksView.addHandlerRender(controlBookmarks);
+  recipeView.addHandlerRender(controlRecipes);
+  recipeView.addHandlerServings(controlServings);
+  recipeView.addHandlerAddBookmark(controlAddBookmark);
+  searchView.addHandlerSearch(controlSearchResults);
+  paginationView.addHandlerClick(controlPagination);
+  addRecipeView.addHandlerUpload(controlAddRecipe);
+};
+init();
+
+// Challenge:
+// 1. Display number of pages between the pagination buttons
+// 2. Add ability to sort search results by duration or number of ingredients;
+// 3. Perform ingredient validation in view, before submitting the form
+// 4. Improve recipe ingredient input: separate in multiple fields and allow more than 6 ingredients;
+
+// Future features:
+// Shopping list feature: button on recipe to add ingredients to a list;
+// Weekly meal planning feature: assign recipes to next 7 days and show on a weekly calendar;
+// Get nutrition data on each  ingredient from spoonacular API(https://spoonacular.com/food-api) and calculate total calories of recipe;
