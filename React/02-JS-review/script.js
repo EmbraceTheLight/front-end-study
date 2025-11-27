@@ -144,20 +144,34 @@ function getBook(id) {
 }
 
 // Destructuring
-const book = getBook(2);
+const book = getBook(1);
 
 // const title = book.title;
 // const author = book.author;
 
 const { title, author, pages, publicationDate, genres, hasMovieAdaptation } =
   book;
-book;
+console.log(book);
 
 console.log(title, author, genres);
 
 // const primaryGenre = genres[0];
 // const secondaryGenre = genres[1];
 
-const [primaryGenre, secondaryGenre] = genres;
+const [primaryGenre, secondaryGenre, ...otherGenres] = genres;
 
-console.log(primaryGenre, secondaryGenre);
+console.log(primaryGenre, secondaryGenre, otherGenres);
+
+// const newGenres = [genres,'epic fantasy'];
+const newGenres = ["epic fantasy", ...genres];
+console.log(newGenres);
+
+const updatedBook = {
+  ...book,
+  // 添加新属性
+  moviePublicationDate: "2001-12-19",
+
+  // 重写现有属性
+  pages: 1210,
+};
+console.log(updatedBook);
