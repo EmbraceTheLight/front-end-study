@@ -144,7 +144,7 @@ function getBook(id) {
 }
 
 // Destructuring
-const book = getBook(1);
+const book = getBook(2);
 
 // const title = book.title;
 // const author = book.author;
@@ -172,13 +172,20 @@ const updatedBook = {
   moviePublicationDate: "2001-12-19",
 
   // 重写现有属性
-  // pages: 1210,
+  pages: 1210,
 };
 console.log(updatedBook);
 
-const summary = `${title}, a ${pages}-page long book was written by ${author} and published in ${
-  publicationDate.split("-")[0]
-}. The book has ${hasMovieAdaptation ? "" : "not"} been adapted as a movie`;
+// function getYear(str) {
+//   return str.split("-")[0];
+// }
+
+const getYear = (str) => str.split("-")[0];
+console.log(getYear(publicationDate));
+
+const summary = `${title}, a ${pages}-page long book was written by ${author} and published in ${getYear(
+  publicationDate,
+)}. The book has ${hasMovieAdaptation ? "" : "not"} been adapted as a movie`;
 console.log(summary);
 
 const pagesRange = pages > 1000 ? "over a thousand" : "less than 1000";
