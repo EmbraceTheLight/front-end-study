@@ -144,7 +144,7 @@ function getBook(id) {
 }
 
 // Destructuring
-const book = getBook(2);
+const book = getBook(3);
 
 // const title = book.title;
 // const author = book.author;
@@ -192,6 +192,7 @@ const pagesRange = pages > 1000 ? "over a thousand" : "less than 1000";
 console.log(pagesRange);
 console.log(`The book has ${pagesRange} pages`);
 
+// ----------------- 逻辑运算符 ----------------- //
 console.log(true && "Some string"); // output: Some string
 console.log(false && "Some string"); // output: false
 console.log(hasMovieAdaptation && "This book has a movie");
@@ -207,11 +208,20 @@ console.log(book.translations.spanish);
 const spanishTranslation = book.translations.spanish || "NOT TRANSLATED";
 console.log(spanishTranslation);
 
-console.log(book.reviews.librarything.reviewsCount);
+console.log(book.reviews?.librarything?.reviewsCount);
 // 0 作为 falsy 值时，会返回 "no data"
-const countWrong = book.reviews.librarything.reviewsCount || "no data";
+const countWrong = book.reviews?.librarything?.reviewsCount || "no data";
 console.log(countWrong);
 
 // nullish coalescing operator
 // falsy 值只有 null 和 undefined. 0, 空字符串等均不会被认为是 falsy 值, 从而会解决上面的问题
 const count = book.reviews.goodreads.reviewsCount ?? "no data"; // 0
+
+// ----------------- 可选链运算符 ----------------- //
+function getTotalReviewCount(book) {
+  const goodReads = book.reviews?.goodreads?.reviewsCount;
+  const libraryThing = book.reviews?.librarything?.reviewsCount ?? 0;
+  return goodReads + libraryThing;
+}
+
+console.log(getTotalReviewCount(book));
