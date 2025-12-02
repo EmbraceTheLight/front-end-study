@@ -1,5 +1,5 @@
 import * as model from './model.js';
-import { MODEL_CLOSE_SEC } from './config.js';
+import {MODEL_CLOSE_SEC} from './config.js';
 import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
 import resultView from './views/resultView.js';
@@ -68,7 +68,7 @@ const controlSearchResults = async function () {
   }
 };
 
-const controlPagination = function(gotoPage){
+const controlPagination = function (gotoPage) {
   // 1) Render new search results
   resultView.render(model.getSearchResultPage(gotoPage));
 
@@ -76,7 +76,7 @@ const controlPagination = function(gotoPage){
   paginationView.render(model.state.search);
 }
 
-const controlServings = function (newServings){
+const controlServings = function (newServings) {
   // Update the recipe servings (in state)
   model.updateServings(newServings);
 
@@ -85,9 +85,9 @@ const controlServings = function (newServings){
   recipeView.update(model.state.recipe);
 }
 
-const controlAddBookmark = function (){
+const controlAddBookmark = function () {
   // 1) Add/Remove bookmark
-  if(!model.state.recipe.bookmarked)
+  if (!model.state.recipe.bookmarked)
     model.addBookmark(model.state.recipe);
   else
     model.deleteBookmark(model.state.recipe.id);
@@ -99,12 +99,12 @@ const controlAddBookmark = function (){
   bookmarksView.render(model.state.bookmarks);
 }
 
-const controlBookmarks = function (){
+const controlBookmarks = function () {
   bookmarksView.render(model.state.bookmarks);
 }
 
-const controlAddRecipe = async function (newRecipe){
-  try{
+const controlAddRecipe = async function (newRecipe) {
+  try {
     // Show loading spinner
     addRecipeView.renderSpinner();
 
@@ -122,15 +122,15 @@ const controlAddRecipe = async function (newRecipe){
     bookmarksView.render(model.state.bookmarks);
 
     // Change ID in URL
-    window.history.pushState(null,"",`#${model.state.recipe.id}`);
+    window.history.pushState(null, "", `#${model.state.recipe.id}`);
     // window.history.back();
 
     // Close form window
-    setTimeout(function(){
+    setTimeout(function () {
       addRecipeView.toggleWindow()
     }, MODEL_CLOSE_SEC * 1000);
-  }catch (err){
-    console.error('💥',err);
+  } catch (err) {
+    console.error('💥', err);
     addRecipeView.renderError(err.message);
   }
 }
