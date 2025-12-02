@@ -229,6 +229,7 @@ function getTotalReviewCount(book) {
 console.log(getTotalReviewCount(book));
 */
 
+/*
 // ----------------- 数组内置方法 ----------------- //
 // 1. map
 function getTotalReviewCount(book) {
@@ -295,3 +296,23 @@ const booksAfterUpdate = booksAfterDelete.map((book) =>
   book.id === 1 ? { ...book, pages: 1210 } : book,
 );
 console.log(booksAfterUpdate);
+*/
+
+// ----------------- Promise ----------------- //
+// fetch("https://jsonplaceholder.typicode.com/todos")
+//   .then((res) => res.json())
+//   .then((data) => console.log(data));
+//
+// console.log("zey");
+
+async function getTodos() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/todos");
+  const data = await res.json();
+  console.log(data);
+
+  return data;
+}
+
+const todos = getTodos();
+console.log(todos);
+console.log("zey");
